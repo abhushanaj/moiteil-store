@@ -1,3 +1,41 @@
 {
-  "extends": "next/core-web-vitals"
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["react", "@typescript-eslint"],
+	"extends": ["plugin:react/recommended", "airbnb", "prettier", "plugin:react/jsx-runtime"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"rules": {
+		"no-console": "warn",
+		"react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+		],
+		"react/jsx-props-no-spreading": [2, { "exceptions": ["AppComponent"] }],
+		"react/function-component-definition": "off",
+		"import/prefer-default-export": "off"
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		}
+	}
 }
