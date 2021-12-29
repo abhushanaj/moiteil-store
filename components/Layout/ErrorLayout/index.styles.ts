@@ -24,6 +24,7 @@ export const ContentWrapper = styled('div', {
 	'& h1': {
 		fontSize: '$42',
 		fontWeight: '$semiBold',
+		lineHeight: '1.2',
 
 		'@media only screen and (max-width: 600px)': {
 			fontSize: '$32'
