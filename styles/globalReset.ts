@@ -21,7 +21,9 @@ export const globalStyles = globalCss({
 		lineHeight: '1.5',
 		fontFamily: '$body',
 		'webkit-font-smoothing': 'antialiased',
-		color: '$textColor'
+		color: '$textColor',
+		bgColor: '$gray2',
+		fontWeight: '$regular'
 	},
 	/* 5. Improve media defaults */
 	'img,picture,video,canvas,svg': {

@@ -31,7 +31,8 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 		fontWeights: {
 			light: 300,
 			regular: 400,
-			medium: 500
+			medium: 500,
+			semiBold: 600
 		},
 		fontSizes: {
 			10: '1rem',
