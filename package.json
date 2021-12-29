@@ -6,11 +6,11 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"dev": "next dev",
+		"dev": "npm-run-all lint && next dev",
 		"build": "next build",
 		"start": "next start",
-		"prettier:format": "prettier --write  --config ./.prettierrc.json \"**/*.{js,jsx,ts,tsx}\"",
-		"prettier:check": "prettier --check  --config ./.prettierrc.json \"**/*.{js,jsx,ts,tsx}\"",
+		"prettier:format": "prettier --write  --config ./.prettierrc.json \"**/*.{js,jsx,ts,tsx,json}\"",
+		"prettier:check": "prettier --check  --config ./.prettierrc.json \"**/*.{js,jsx,ts,tsx,json}\"",
 		"eslint": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
 		"lint": "npm-run-all eslint prettier:format",
 		"prepare": "husky install"

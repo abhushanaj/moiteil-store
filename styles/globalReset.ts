@@ -21,7 +21,9 @@ export const globalStyles = globalCss({
 		lineHeight: '1.5',
 		fontFamily: '$body',
 		'webkit-font-smoothing': 'antialiased',
-		color: '$textColor'
+		color: '$textColor',
+		bgColor: '$gray3',
+		fontWeight: '$regular'
 	},
 	/* 5. Improve media defaults */
 	'img,picture,video,canvas,svg': {
@@ -40,5 +42,9 @@ export const globalStyles = globalCss({
 	/* 7. Avoid text overflows */
 	'p,h1,h2,h3,h4,h5,h6': {
 		overflowWrap: 'break-word'
+	},
+	'h1,h2,h3,h4,h5,h6': {
+		fontFamily: '$heading',
+		fontWeight: '$semiBold'
 	}
 });
