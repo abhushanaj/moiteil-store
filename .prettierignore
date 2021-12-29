@@ -18,7 +18,3 @@
 # misc
 .DS_Store
 *.pem
-
-.prettierrc.json
-.eslintrc.json
-package.json
