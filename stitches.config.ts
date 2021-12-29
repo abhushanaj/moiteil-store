@@ -46,7 +46,11 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 			26: '2.6rem',
 			28: '2.8rem',
 			30: '3rem',
-			42: '4.2rem'
+			32: '3.2rem',
+			34: '3.4rem',
+			36: '3.6rem',
+			42: '4.2rem',
+			48: '4.8rem'
 		},
 
 		/* Radii composition */
@@ -64,53 +68,79 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 	/* Setting up custom utils */
 	utils: {
 		/* Utils for setting margins */
-		marginX: (value: string) => ({
-			marginLeft: value,
-			marginRight: value
-		}),
-		marginY: (value: string) => ({
-			marginTop: value,
-			marginBottom: value
-		}),
-		mt: (value: string) => ({
-			marginTop: value
-		}),
-		mb: (value: string) => ({
-			marginBottom: value
-		}),
-		ml: (value: string) => ({
-			marginLeft: value
-		}),
-		mr: (value: string) => ({
-			marginRight: value
-		}),
+		mx: (value: string) => {
+			return {
+				marginLeft: value,
+				marginRight: value
+			};
+		},
+		my: (value: string) => {
+			return {
+				marginTop: value,
+				marginBottom: value
+			};
+		},
+		mt: (value: string) => {
+			return {
+				marginTop: value
+			};
+		},
+		mb: (value: string) => {
+			return {
+				marginBottom: value
+			};
+		},
+		ml: (value: string) => {
+			return {
+				marginLeft: value
+			};
+		},
+		mr: (value: string) => {
+			return {
+				marginRight: value
+			};
+		},
 
 		/* Utils for setting padding */
-		paddingX: (value: string) => ({
-			paddingLeft: value,
-			paddingRight: value
-		}),
-		paddingY: (value: string) => ({
-			paddingTop: value,
-			paddingBottom: value
-		}),
-		pt: (value: string) => ({
-			paddingTop: value
-		}),
-		pb: (value: string) => ({
-			paddingBottom: value
-		}),
-		pl: (value: string) => ({
-			paddingLeft: value
-		}),
-		pr: (value: string) => ({
-			paddingRight: value
-		}),
+		px: (value: string) => {
+			return {
+				paddingLeft: value,
+				paddingRight: value
+			};
+		},
+		py: (value: string) => {
+			return {
+				paddingTop: value,
+				paddingBottom: value
+			};
+		},
+		pt: (value: string) => {
+			return {
+				paddingTop: value
+			};
+		},
+		pb: (value: string) => {
+			return {
+				paddingBottom: value
+			};
+		},
+		pl: (value: string) => {
+			return {
+				paddingLeft: value
+			};
+		},
+		pr: (value: string) => {
+			return {
+				paddingRight: value
+			};
+		},
 
 		/* Utils for setting background colors */
-		bgColor: (value: string) => ({
-			backgroundColor: value
-		})
+		bgColor: (value: string) => {
+			return {
+				backgroundColor: value
+			};
+		}
 	},
 
 	/* Setting up media breakpoints if needed */
