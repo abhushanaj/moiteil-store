@@ -1,12 +1,10 @@
 import React from 'react';
-import type { CSS } from '@stitches/react';
+import type { StitchesCSS } from '../../../stitches.config';
 
 /* Styling */
 import { Wrapper } from './index.styles';
 
-type StitchesCssProps = CSS;
-
-type Props = React.PropsWithChildren<{ style?: StitchesCssProps }>;
+type Props = React.PropsWithChildren<{ style?: StitchesCSS }>;
 
 const ContentLayout = (props: Props) => {
 	const { children, style } = props;

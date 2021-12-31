@@ -1,4 +1,5 @@
 import { createStitches } from '@stitches/react';
+import type * as Stitches from '@stitches/react';
 
 export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText, config } = createStitches({
 	theme: {
@@ -74,75 +75,75 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 	/* Setting up custom utils */
 	utils: {
 		/* Utils for setting margins */
-		mx: (value: string) => {
+		mx: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				marginLeft: value,
 				marginRight: value
 			};
 		},
-		my: (value: string) => {
+		my: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				marginTop: value,
 				marginBottom: value
 			};
 		},
-		mt: (value: string) => {
+		mt: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				marginTop: value
 			};
 		},
-		mb: (value: string) => {
+		mb: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				marginBottom: value
 			};
 		},
-		ml: (value: string) => {
+		ml: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				marginLeft: value
 			};
 		},
-		mr: (value: string) => {
+		mr: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				marginRight: value
 			};
 		},
 
 		/* Utils for setting padding */
-		px: (value: string) => {
+		px: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				paddingLeft: value,
 				paddingRight: value
 			};
 		},
-		py: (value: string) => {
+		py: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				paddingTop: value,
 				paddingBottom: value
 			};
 		},
-		pt: (value: string) => {
+		pt: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				paddingTop: value
 			};
 		},
-		pb: (value: string) => {
+		pb: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				paddingBottom: value
 			};
 		},
-		pl: (value: string) => {
+		pl: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				paddingLeft: value
 			};
 		},
-		pr: (value: string) => {
+		pr: (value: Stitches.PropertyValue<'margin'>) => {
 			return {
 				paddingRight: value
 			};
 		},
 
 		/* Utils for setting background colors */
-		bgColor: (value: string) => {
+		bgColor: (value: Stitches.PropertyValue<'backgroundColor'>) => {
 			return {
 				backgroundColor: value
 			};
@@ -155,3 +156,6 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 	/* Setting up a prefix moiteil on all classes */
 	prefix: 'moiteil-'
 });
+
+/* Exported types for Stitches */
+export type StitchesCSS = Stitches.CSS<typeof config>;
