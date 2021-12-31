@@ -13,7 +13,7 @@ export const ContentWrapper = styled('div', {
 	padding: '2rem',
 	textAlign: 'center',
 	mt: '2rem',
-	boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
+	boxShadow: '$2',
 	borderRadius: '$10',
 	bgColor: '$gray1',
 

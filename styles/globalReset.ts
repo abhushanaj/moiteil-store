@@ -23,7 +23,8 @@ export const globalStyles = globalCss({
 		'webkit-font-smoothing': 'antialiased',
 		color: '$textColor',
 		bgColor: '$gray3',
-		fontWeight: '$regular'
+		fontWeight: '$regular',
+		fontSize: '$16'
 	},
 	/* 5. Improve media defaults */
 	'img,picture,video,canvas,svg': {
@@ -46,5 +47,11 @@ export const globalStyles = globalCss({
 	'h1,h2,h3,h4,h5,h6': {
 		fontFamily: '$heading',
 		fontWeight: '$semiBold'
+	},
+	/* 8. Reset the a tag styles */
+	a: {
+		font: 'inherit',
+		textDecoration: 'none',
+		color: 'inherit'
 	}
 });
