@@ -5,6 +5,7 @@ import { globalStyles } from '../styles/globalReset';
 
 /* Footer */
 import Footer from '../components/Footer';
+import CopyrightFooter from '../components/CopyrightFooter';
 
 function MyApp({ Component: AppComponent, pageProps }: AppProps) {
 	return (
@@ -12,6 +13,7 @@ function MyApp({ Component: AppComponent, pageProps }: AppProps) {
 			{globalStyles()}
 			<AppComponent {...pageProps} />
 			<Footer />
+			<CopyrightFooter />
 		</>
 	);
 }

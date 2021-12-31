@@ -84,17 +84,21 @@ const Footer = () => {
 						{/* List Items */}
 						<FooterGridItemList>
 							<FooterLinkItem>
-								<ExternalLink href="https://nextjs.org/docs/getting-started" target="_blank">
+								<ExternalLink href={process.env.NEXT_PUBLIC_NEXTJS_LINK} target="_blank">
 									Next.js
 								</ExternalLink>
 							</FooterLinkItem>
 
 							<FooterLinkItem>
-								<ExternalLink href="https://stitches.dev/">Stitches</ExternalLink>
+								<ExternalLink href={process.env.NEXT_PUBLIC_STITCHES_LINK}>Stitches</ExternalLink>
 							</FooterLinkItem>
 
 							<FooterLinkItem>
-								<ExternalLink href="https://www.radix-ui.com/">Radix UI</ExternalLink>
+								<ExternalLink href={process.env.NEXT_PUBLIC_RADIX_UI_LINK}>Radix UI</ExternalLink>
+							</FooterLinkItem>
+
+							<FooterLinkItem>
+								<ExternalLink href={process.env.NEXT_PUBLIC_STRIPE_LINK}>Stripe</ExternalLink>
 							</FooterLinkItem>
 						</FooterGridItemList>
 					</FooterGridItem>
