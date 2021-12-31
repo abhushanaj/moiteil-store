@@ -1,16 +1,20 @@
 import React from 'react';
+import type { CSS } from '@stitches/react';
 
 /* Styling */
 import { Wrapper } from './index.styles';
 
-type Props = {
-	children: React.ReactNode;
-	styles: React.CSSProperties;
-};
+type StitchesCssProps = CSS;
+
+type Props = React.PropsWithChildren<{ style?: StitchesCssProps }>;
 
 const ContentLayout = (props: Props) => {
-	const { children, styles } = props;
-	return <Wrapper style={styles}>{children}</Wrapper>;
+	const { children, style } = props;
+	return <Wrapper css={style}>{children}</Wrapper>;
 };
 
 export default ContentLayout;
+
+ContentLayout.defaultProps = {
+	style: {}
+};

@@ -25,7 +25,7 @@ import twitterIcon from '../../public/twitter-icon.svg';
 const Footer = () => {
 	return (
 		<FooterLayout style={{ marginTop: '20px' }}>
-			<ContentLayout styles={{ padding: '3rem 0rem' }}>
+			<ContentLayout style={{ padding: '3rem 0rem' }}>
 				<FooterGrid>
 					{/* Company Details */}
 					<FooterGridItem>
