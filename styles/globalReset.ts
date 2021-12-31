@@ -23,7 +23,8 @@ export const globalStyles = globalCss({
 		'webkit-font-smoothing': 'antialiased',
 		color: '$textColor',
 		bgColor: '$gray3',
-		fontWeight: '$regular'
+		fontWeight: '$regular',
+		fontSize: '$16'
 	},
 	/* 5. Improve media defaults */
 	'img,picture,video,canvas,svg': {
