@@ -27,10 +27,11 @@
 				"tsx": "never"
 			}
 		],
-		"react/jsx-props-no-spreading": [2, { "exceptions": ["AppComponent"] }],
+		"react/jsx-props-no-spreading": [2, { "exceptions": ["AppComponent", "Link", "Image", "a", "svg"] }],
 		"react/function-component-definition": "off",
 		"import/prefer-default-export": "off",
-		"arrow-body-style": ["error", "always"]
+		"arrow-body-style": ["error", "always"],
+		"react/prop-types": "off"
 	},
 	"settings": {
 		"import/resolver": {

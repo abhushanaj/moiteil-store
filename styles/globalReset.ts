@@ -47,5 +47,11 @@ export const globalStyles = globalCss({
 	'h1,h2,h3,h4,h5,h6': {
 		fontFamily: '$heading',
 		fontWeight: '$semiBold'
+	},
+	/* 8. Reset the a tag styles */
+	a: {
+		font: 'inherit',
+		textDecoration: 'none',
+		color: 'inherit'
 	}
 });
