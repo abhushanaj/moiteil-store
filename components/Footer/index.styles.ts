@@ -26,7 +26,15 @@ export const FooterGrid = styled('div', {
 	display: 'grid',
 	gridTemplateColumns: '350px repeat(3,1fr)',
 	gridColumnGap: '16px',
-	gridRowGap: '30px'
+	gridRowGap: '30px',
+
+	'@media only screen and (max-width: 950px)': {
+		gridTemplateColumns: 'repeat(2,1fr)'
+	},
+
+	'@media only screen and (max-width: 720px)': {
+		gridTemplateColumns: '1fr'
+	}
 });
 
 export const FooterGridItem = styled('div', {
