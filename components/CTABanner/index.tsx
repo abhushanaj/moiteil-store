@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 /* Styling */
 import {
 	shopNowStyles,
@@ -14,6 +12,7 @@ import {
 /* Components */
 import ContentLayout from '../Layout/ContentLayout';
 import InternalLink from '../InternalLink';
+import GraphCMSImage from '../GraphCMSImage';
 
 function CTABanner() {
 	return (
@@ -31,11 +30,7 @@ function CTABanner() {
 
 				<CoverImageWrapper>
 					{/* Use sample image for now */}
-					<Image
-						src="https://media.graphcms.com/resize=height:500,width:500/YdbrbTqTguN16RVac3zQ"
-						width={500}
-						height={500}
-					/>
+					<GraphCMSImage src="https://media.graphcms.com/YdbrbTqTguN16RVac3zQ" width={500} height={500} />
 					<CoverImageCircle />
 				</CoverImageWrapper>
 			</BannerCover>
