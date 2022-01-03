@@ -21,7 +21,7 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 			textColor: '#333237',
 			primaryTeal: '#ADD4D3',
 			primaryOrange: '#FB8351',
-			secondaryOrange: 'FFAD64'
+			secondaryOrange: '#FFAD64'
 		},
 
 		/* Font scale */
@@ -69,6 +69,12 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 		shadows: {
 			1: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
 			2: '0 5px 10px rgba(0, 0, 0, 0.1)'
+		},
+
+		/* Z index */
+		zIndices: {
+			1: 1,
+			2: 2
 		}
 	},
 
