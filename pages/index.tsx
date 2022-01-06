@@ -1,10 +1,8 @@
 import type { NextPage, GetStaticProps } from 'next';
 
 /* Lib */
-import { graphCMSClient } from '../lib/GraphCMSClient';
-
-/* GraphQL */
-import { GET_CTA_BANNER_CONTENT } from '../graphQL/queries/ctaBanner';
+import { getBannerDetails } from '../lib/GraphCMS/functions/banner';
+import { getCategoriesList } from '../lib/GraphCMS/functions/categories';
 
 /* Components */
 import CTABanner from '../components/CTABanner';
@@ -12,42 +10,36 @@ import CategoriesList from '../components/CategoriesList';
 
 /* Types */
 import type { CtaContent } from '../types/Banner';
+import type { Category } from '../types/Categories';
 
 type Props = {
 	ctaBannerContent: CtaContent;
+	categoriesLists: Category[];
 };
 
 const Home: NextPage<Props> = (props) => {
-	const { ctaBannerContent } = props;
+	const { ctaBannerContent, categoriesLists } = props;
 
 	return (
 		<div style={{ minHeight: '100vh' }}>
 			<CTABanner ctaBannerContent={ctaBannerContent} />
-			<CategoriesList />
+			<CategoriesList categoryLists={categoriesLists} />
 		</div>
 	);
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-	type RequestProps = {
-		ctaBanners: CtaContent[];
-	};
-
 	try {
 		// get the contents to cta banner
-		const { ctaBanners } = await graphCMSClient.request<RequestProps>(GET_CTA_BANNER_CONTENT);
+		const { ctaBanners } = await getBannerDetails();
+		const { categoriesLists } = (await getCategoriesList()) ?? null;
 
-		if (!ctaBanners.length) {
-			return {
-				props: {
-					ctaBannerContent: null
-				}
-			};
-		}
+		// get all categories details home page
 
 		return {
 			props: {
-				ctaBannerContent: ctaBanners[0]
+				ctaBannerContent: ctaBanners[0] ?? null,
+				categoriesLists: categoriesLists ?? null
 			}
 		};
 
@@ -56,7 +48,8 @@ export const getStaticProps: GetStaticProps = async () => {
 		console.error('Error getting CTA Banner content', err);
 		return {
 			props: {
-				ctaBannerContent: null
+				ctaBannerContent: null,
+				categoriesLists: null
 			}
 		};
 	}
