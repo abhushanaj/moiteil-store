@@ -1,13 +1,14 @@
 import type { NextPage, GetStaticProps } from 'next';
 
-/* Components */
-import CTABanner from '../components/CTABanner';
-
 /* Lib */
 import { graphCMSClient } from '../lib/GraphCMSClient';
 
 /* GraphQL */
 import { GET_CTA_BANNER_CONTENT } from '../graphQL/queries/ctaBanner';
+
+/* Components */
+import CTABanner from '../components/CTABanner';
+import CategoriesList from '../components/CategoriesList';
 
 /* Types */
 import type { CtaContent } from '../types/Banner';
@@ -22,6 +23,7 @@ const Home: NextPage<Props> = (props) => {
 	return (
 		<div style={{ minHeight: '100vh' }}>
 			<CTABanner ctaBannerContent={ctaBannerContent} />
+			<CategoriesList />
 		</div>
 	);
 };

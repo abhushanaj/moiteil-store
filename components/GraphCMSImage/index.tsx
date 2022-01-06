@@ -8,7 +8,7 @@ type Props = ImageProps;
 export function GraphCMSImage(props: Props) {
 	return (
 		<Image
-			placeholder="blur"
+			placeholder="empty"
 			loader={graphCMSImageLoader}
 			blurDataURL={generateBlurDataUrl({ width: 500, height: 500 })}
 			{...props}
