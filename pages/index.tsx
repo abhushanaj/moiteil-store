@@ -7,6 +7,7 @@ import { getCategoriesList } from '../lib/GraphCMS/functions/categories';
 /* Components */
 import CTABanner from '../components/CTABanner';
 import CategoriesList from '../components/CategoriesList';
+import FeaturesSection from '../components/FeaturesSection';
 
 /* Types */
 import type { CtaContent } from '../types/Banner';
@@ -21,10 +22,11 @@ const Home: NextPage<Props> = (props) => {
 	const { ctaBannerContent, categoriesLists } = props;
 
 	return (
-		<div style={{ minHeight: '100vh' }}>
+		<main style={{ minHeight: '100vh' }}>
 			<CTABanner ctaBannerContent={ctaBannerContent} />
 			<CategoriesList categoryLists={categoriesLists} />
-		</div>
+			<FeaturesSection />
+		</main>
 	);
 };
 
