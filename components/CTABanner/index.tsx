@@ -14,23 +14,38 @@ import ContentLayout from '../Layout/ContentLayout';
 import InternalLink from '../InternalLink';
 import GraphCMSImage from '../GraphCMSImage';
 
-function CTABanner() {
+/* Types */
+import type { CtaContent } from '../../types/Banner';
+
+type Props = {
+	ctaBannerContent: CtaContent;
+};
+
+function CTABanner(props: Props) {
+	const { ctaBannerContent } = props;
+
 	return (
 		<ContentLayout style={{ my: '2rem' }}>
 			<BannerCover>
 				<BannerContentWrapper>
 					<Heading>
-						<SubHeading>Back In Stock</SubHeading>
-						Embroidered Moiteil Beanie
+						<SubHeading>{ctaBannerContent.subHeading}</SubHeading>
+						{ctaBannerContent.heading}
 					</Heading>
-					<InternalLink href="/hats" style={shopNowStyles}>
+					<InternalLink href={ctaBannerContent.ctaLink} style={shopNowStyles}>
 						Shop Now
 					</InternalLink>
 				</BannerContentWrapper>
 
 				<CoverImageWrapper>
 					{/* Use sample image for now */}
-					<GraphCMSImage src="https://media.graphcms.com/YdbrbTqTguN16RVac3zQ" width={500} height={500} />
+					<GraphCMSImage
+						src={ctaBannerContent.ctaCoverImage.url}
+						width={500}
+						height={500}
+						priority
+						placeholder="empty"
+					/>
 					<CoverImageCircle />
 				</CoverImageWrapper>
 			</BannerCover>

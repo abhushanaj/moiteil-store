@@ -15,7 +15,7 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"no-console": "warn",
+		"no-console": [2, { "allow": ["warn", "error"] }],
 		"react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
 		"import/extensions": [
 			"error",
