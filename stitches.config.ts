@@ -165,3 +165,4 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 
 /* Exported types for Stitches */
 export type StitchesCSS = Stitches.CSS<typeof config>;
+export type StitchesGenericVariantsProps<T> = Stitches.VariantProps<T>;
