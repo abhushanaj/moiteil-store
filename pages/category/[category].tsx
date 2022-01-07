@@ -8,8 +8,8 @@ const CategoryPage: NextPage = () => {
 		<main style={{ minHeight: '100vh' }}>
 			<Breadcrumb
 				currentPath={[
-					{ href: '/category/men', label: 'Category', isActive: false, isDisabled: true },
-					{ href: '/category/women', label: 'Men', isActive: true, isDisabled: false }
+					{ href: '/category', label: 'Category', isActive: false, isDisabled: true },
+					{ href: '/category/men', label: 'Men', isActive: true, isDisabled: false }
 				]}
 			/>
 		</main>
