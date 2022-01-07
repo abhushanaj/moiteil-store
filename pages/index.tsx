@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	try {
 		// get the contents to cta banner
 		const { ctaBanners } = await getBannerDetails();
-		const { categoriesLists } = (await getCategoriesList()) ?? null;
+		const { categoriesLists } = (await getCategoriesList({ first: 4 })) ?? null;
 		const { products } = (await getAllProducts()) ?? null;
 
 		return {

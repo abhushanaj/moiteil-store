@@ -49,3 +49,5 @@ function Breadcrumb(props: Props) {
 }
 
 export default Breadcrumb;
+
+// Get Static Paths
