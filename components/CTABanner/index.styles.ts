@@ -14,13 +14,14 @@ export const shopNowStyles: StitchesCSS = {
 		height: '3px',
 		borderRadius: '$2',
 		bgColor: 'rgba(255,255,255,0.3)',
-		width: '100%',
-		transition: 'background-color 0.3s linear'
+		width: '0%',
+		transition: 'width 0.3s ease-in-out'
 	},
 
 	'&:hover': {
 		'&::after': {
-			bgColor: 'currentColor'
+			bgColor: '$textColor',
+			width: '100%'
 		}
 	}
 };

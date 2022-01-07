@@ -14,7 +14,7 @@ function InternalLink(props: Props) {
 	const { children, style, ...nextLinkProps } = props;
 
 	return (
-		<Link {...nextLinkProps}>
+		<Link {...nextLinkProps} passHref>
 			{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 			<CustomLink css={style}>{children}</CustomLink>
 		</Link>

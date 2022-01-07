@@ -38,7 +38,6 @@ function CTABanner(props: Props) {
 				</BannerContentWrapper>
 
 				<CoverImageWrapper>
-					{/* Use sample image for now */}
 					<GraphCMSImage
 						src={ctaBannerContent.ctaCoverImage.url}
 						width={500}
