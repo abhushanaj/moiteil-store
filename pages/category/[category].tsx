@@ -2,22 +2,37 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
 /* Components */
 import Breadcrumb from '../../components/Breadcrumb';
+import CategoryBanner from '../../components/CategoryBanner';
+import ContentLayout from '../../components/Layout/ContentLayout';
 
 /* Lib */
-import { getCategoriesList } from '../../lib/GraphCMS/functions/categories';
+import { getCategoriesList, getDetailsByCategoryLink } from '../../lib/GraphCMS/functions/categories';
 
 /* Utils */
 import { formatCategoryLink } from '../../utils/category';
 
-const CategoryPage: NextPage = () => {
+type Props = {
+	categoryName: string;
+	categorySlug: string;
+};
+const CategoryPage: NextPage<Props> = (props) => {
+	const { categoryName, categorySlug } = props;
+
 	return (
 		<main style={{ minHeight: '100vh' }}>
-			<Breadcrumb
-				currentPath={[
-					{ href: '/category', label: 'Category', isActive: false, isDisabled: true },
-					{ href: '/category/men', label: 'Men', isActive: true, isDisabled: false }
-				]}
-			/>
+			<CategoryBanner>
+				<h1>{categoryName}</h1>
+			</CategoryBanner>
+
+			<ContentLayout>
+				<Breadcrumb
+					style={{ transform: 'translateY(-20px)' }}
+					currentPath={[
+						{ href: '/category', label: 'Category', isActive: false, isDisabled: true },
+						{ href: categorySlug, label: categoryName, isActive: true, isDisabled: false }
+					]}
+				/>
+			</ContentLayout>
 		</main>
 	);
 };
@@ -51,7 +66,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 // Get data for the following category page
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+	try {
+		// format the category link from paths to a valid slug
+		const catgoryLink = `/category/${params?.category || ''}`;
+
+		const { categoriesList } = (await getDetailsByCategoryLink(catgoryLink)) ?? null;
+
+		// if no details found based on category link, return 404
+		if (!categoriesList) {
+			return {
+				notFound: true
+			};
+		}
+
+		// else return all the details
+		return {
+			props: {
+				id: categoriesList.id,
+				categoryName: categoriesList.name,
+				categorySlug: categoriesList.categoryLink
+			}
+		};
+	} catch (err) {
+		console.error('Error fetching details for category', err);
+	}
 	return {
 		props: {
 			data: []

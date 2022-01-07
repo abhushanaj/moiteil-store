@@ -12,3 +12,20 @@ export const GET_CATEGORIES_LIST = gql`
 		}
 	}
 `;
+
+export const GET_CATEGORY_DETAILS_BY_LINK = gql`
+	query getCategoryDetails($categoryLink: String!) {
+		categoriesList(where: { categoryLink: $categoryLink }) {
+			id
+			name
+			categoryLink
+			products {
+				id
+				name
+				thumbnail {
+					url
+				}
+			}
+		}
+	}
+`;

@@ -9,7 +9,7 @@ import InternalLink from '../InternalLink';
 import homeIcon from '../../public/home-icon.svg';
 
 /* Types */
-import type { StitchesGenericVariantsProps } from '../../stitches.config';
+import type { StitchesCSS, StitchesGenericVariantsProps } from '../../stitches.config';
 
 type BreadcrumbItemProp = {
 	href: string;
@@ -18,13 +18,13 @@ type BreadcrumbItemProp = {
 
 type Props = {
 	currentPath: BreadcrumbItemProp[];
-};
+} & { style?: StitchesCSS };
 
 function Breadcrumb(props: Props) {
-	const { currentPath } = props;
+	const { currentPath, style } = props;
 
 	return (
-		<BreadcrumbRoot>
+		<BreadcrumbRoot css={style}>
 			<BreadcrumbItem>
 				<InternalLink href="/">
 					<Image src={homeIcon} />
@@ -50,4 +50,6 @@ function Breadcrumb(props: Props) {
 
 export default Breadcrumb;
 
-// Get Static Paths
+Breadcrumb.defaultProps = {
+	style: {}
+};
