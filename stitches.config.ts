@@ -68,7 +68,8 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 		/* Box shadows */
 		shadows: {
 			1: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-			2: '0 5px 10px rgba(0, 0, 0, 0.1)'
+			2: '0 5px 10px rgba(0, 0, 0, 0.1)',
+			3: '0 10px 20px rgba(0, 0, 0, 0.1)'
 		},
 
 		/* Z index */
