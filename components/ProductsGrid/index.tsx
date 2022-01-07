@@ -1,39 +1,31 @@
 /* Styles */
-import {
-	viewProductStyles,
-	ProductCardWrapper,
-	ProductContent,
-	ProductImage,
-	ProductsGridLayout,
-	ProductsGridTitle
-} from './index.styles';
+import { GridLayoutItem, ProductsGridLayout, ProductsGridTitle } from './index.styles';
 
 /* Components */
 import ContentLayout from '../Layout/ContentLayout';
-import GraphCMSImage from '../GraphCMSImage';
-import InternalLink from '../InternalLink';
 
-function ProductsGrid() {
+import type { Product } from '../../types/Product';
+import ProductOverview from '../ProductOverview';
+
+type Props = {
+	title: string;
+	productsList: Product[];
+};
+
+function ProductsGrid(props: Props) {
+	const { title, productsList } = props;
+
 	return (
-		<ContentLayout as="section">
-			<ProductsGridTitle>Latest Products</ProductsGridTitle>
+		<ContentLayout as="section" style={{ my: '12rem' }}>
+			<ProductsGridTitle>{title}</ProductsGridTitle>
 			<ProductsGridLayout>
-				<ProductCardWrapper>
-					<ProductImage>
-						<GraphCMSImage width={260} height={260} src="https://media.graphcms.com/3YIOeAdTa6B31nqoo2Hy" />
-					</ProductImage>
-
-					<ProductContent>
-						<h2>Unisex T-Shirt</h2>
-						<p>
-							<strong>$ 18.00</strong>
-						</p>
-
-						<InternalLink href="/category/product-name" style={viewProductStyles}>
-							View Product
-						</InternalLink>
-					</ProductContent>
-				</ProductCardWrapper>
+				{productsList.map((product) => {
+					return (
+						<GridLayoutItem key={product.id}>
+							<ProductOverview name={product.name} thumbnail={product.thumbnail} slug={product.slug} />
+						</GridLayoutItem>
+					);
+				})}
 			</ProductsGridLayout>
 		</ContentLayout>
 	);
