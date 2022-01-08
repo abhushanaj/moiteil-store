@@ -1,5 +1,5 @@
 import type { Image } from '../Image';
-import { Product } from '../Product';
+import type { CategoryProductSummary } from '../Product';
 
 export type Category = {
 	id: string;
@@ -8,6 +8,6 @@ export type Category = {
 	categoryImage: Image;
 };
 
-export type CategoryDetails = Category & {
-	products: Product[];
+export type CategoryDetails = Omit<Category, 'categoryImage'> & {
+	products: CategoryProductSummary[];
 };

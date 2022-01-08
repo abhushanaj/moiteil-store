@@ -3,25 +3,27 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 /* Components */
 import Breadcrumb from '../../components/Breadcrumb';
 import CategoryBanner from '../../components/CategoryBanner';
+import CategoryProductsGrid from '../../components/CategoryProductsGrid';
 import ContentLayout from '../../components/Layout/ContentLayout';
 
 /* Lib */
 import { getCategoriesList, getDetailsByCategoryLink } from '../../lib/GraphCMS/functions/categories';
+import { CategoryDetails } from '../../types/Categories';
 
 /* Utils */
 import { formatCategoryLink } from '../../utils/category';
 
 type Props = {
-	categoryName: string;
-	categorySlug: string;
+	categoryWithProducts: CategoryDetails;
 };
+
 const CategoryPage: NextPage<Props> = (props) => {
-	const { categoryName, categorySlug } = props;
+	const { categoryWithProducts } = props;
 
 	return (
 		<main style={{ minHeight: '100vh' }}>
 			<CategoryBanner>
-				<h1>{categoryName}</h1>
+				<h1>{categoryWithProducts.name}</h1>
 			</CategoryBanner>
 
 			<ContentLayout>
@@ -29,9 +31,18 @@ const CategoryPage: NextPage<Props> = (props) => {
 					style={{ transform: 'translateY(-20px)' }}
 					currentPath={[
 						{ href: '/category', label: 'Category', isActive: false, isDisabled: true },
-						{ href: categorySlug, label: categoryName, isActive: true, isDisabled: false }
+						{
+							href: categoryWithProducts.categoryLink,
+							label: categoryWithProducts.name,
+							isActive: true,
+							isDisabled: false
+						}
 					]}
 				/>
+			</ContentLayout>
+
+			<ContentLayout>
+				<CategoryProductsGrid categoryProductsList={categoryWithProducts.products} />
 			</ContentLayout>
 		</main>
 	);
@@ -83,9 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		// else return all the details
 		return {
 			props: {
-				id: categoriesList.id,
-				categoryName: categoriesList.name,
-				categorySlug: categoriesList.categoryLink
+				categoryWithProducts: categoriesList
 			}
 		};
 	} catch (err) {

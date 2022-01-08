@@ -22,6 +22,7 @@ export const GET_CATEGORY_DETAILS_BY_LINK = gql`
 			products {
 				id
 				name
+				slug
 				thumbnail {
 					url
 				}
