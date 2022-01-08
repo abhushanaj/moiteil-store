@@ -112,6 +112,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		// get first 8 products filtered by isLatest flag
 		const { products: latestProducts } = (await getFilteredProducts({ first: 8, isLatest: true })) ?? [];
 
+		// get first 8 products filtered by isPopular flag
 		const { products: popularProducts } = (await getFilteredProducts({ first: 8, isPopular: true })) ?? [];
 
 		return {
