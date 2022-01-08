@@ -8,3 +8,5 @@ export type Product = {
 	isPopular: boolean;
 	thumbnail: Image;
 };
+
+export type CategoryProductSummary = Omit<Product, 'isLatest' | 'isPopular'>;
