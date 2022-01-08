@@ -1,19 +1,28 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
-/* Components */
-import Breadcrumb from '../../components/Breadcrumb';
-import CategoryBanner from '../../components/CategoryBanner';
-import CategoryProductsGrid from '../../components/CategoryProductsGrid';
-import ContentLayout from '../../components/Layout/ContentLayout';
+/* Styling */
+import {
+	CategoryBannerTile,
+	CategoryProductsGridItem,
+	CategoryProductsGridLayout
+} from '../../styles/categoryPage.styles';
 
 /* Lib */
 import { getCategoriesList, getDetailsByCategoryLink } from '../../lib/GraphCMS/functions/categories';
-import { CategoryDetails } from '../../types/Categories';
 
 /* Utils */
 import { formatCategoryLink } from '../../utils/category';
 
+/* Components */
+import ContentLayout from '../../components/Layout/ContentLayout';
+import Breadcrumb from '../../components/Breadcrumb';
+import ProductOverview from '../../components/ProductOverview';
+
+/* Types */
+import type { Category, CategoryDetails } from '../../types/Categories';
+
 type Props = {
+	allCategories: Category[];
 	categoryWithProducts: CategoryDetails;
 };
 
@@ -22,10 +31,11 @@ const CategoryPage: NextPage<Props> = (props) => {
 
 	return (
 		<main style={{ minHeight: '100vh' }}>
-			<CategoryBanner>
+			<CategoryBannerTile>
 				<h1>{categoryWithProducts.name}</h1>
-			</CategoryBanner>
+			</CategoryBannerTile>
 
+			{/* Page breadcrumb */}
 			<ContentLayout>
 				<Breadcrumb
 					style={{ transform: 'translateY(-20px)' }}
@@ -41,8 +51,25 @@ const CategoryPage: NextPage<Props> = (props) => {
 				/>
 			</ContentLayout>
 
+			{/*  Page content */}
 			<ContentLayout>
-				<CategoryProductsGrid categoryProductsList={categoryWithProducts.products} />
+				{/*  Aside navigation and newsletter  */}
+
+				{/*  Grid Layout for the category products */}
+				<CategoryProductsGridLayout>
+					{categoryWithProducts.products.map((product) => {
+						return (
+							<CategoryProductsGridItem key={product.id}>
+								<ProductOverview
+									key={product.id}
+									name={product.name}
+									thumbnail={product.thumbnail}
+									slug={product.slug}
+								/>
+							</CategoryProductsGridItem>
+						);
+					})}
+				</CategoryProductsGridLayout>
 			</ContentLayout>
 		</main>
 	);
@@ -79,13 +106,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // Get data for the following category page
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
+		// get all the categories to show as sidebar on page
+		const { categoriesLists: allCategories } = (await getCategoriesList()) ?? [];
+
+		// fetch all products and category details based on page slug
+
 		// format the category link from paths to a valid slug
 		const catgoryLink = `/category/${params?.category || ''}`;
-
-		const { categoriesList } = (await getDetailsByCategoryLink(catgoryLink)) ?? null;
+		const { categoriesList: categoryWithProducts } = (await getDetailsByCategoryLink(catgoryLink)) ?? null;
 
 		// if no details found based on category link, return 404
-		if (!categoriesList) {
+		if (!categoryWithProducts) {
 			return {
 				notFound: true
 			};
@@ -94,15 +125,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		// else return all the details
 		return {
 			props: {
-				categoryWithProducts: categoriesList
+				allCategories,
+				categoryWithProducts
 			}
 		};
 	} catch (err) {
 		console.error('Error fetching details for category', err);
+		return {
+			props: {
+				categoryWithProducts: [],
+				allCategory: []
+			}
+		};
 	}
-	return {
-		props: {
-			data: []
-		}
-	};
 };
