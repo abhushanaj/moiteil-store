@@ -28,7 +28,7 @@ export const pageLayoutStyles: StitchesCSS = {
 	}
 };
 
-export const AsideWrapper = styled('div', {
+export const AsideWrapper = styled('aside', {
 	h1: {
 		fontSize: '$30',
 		pl: '2.4rem',
