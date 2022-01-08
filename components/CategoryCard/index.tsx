@@ -2,10 +2,10 @@
 import { CategoryCardTitle, CatgeoryCard } from './index.styles';
 
 /* Components */
-import GraphCMSImage from '../../GraphCMSImage';
+import GraphCMSImage from '../GraphCMSImage';
 
 /* Types */
-import type { StitchesGenericVariantsProps } from '../../../stitches.config';
+import type { StitchesGenericVariantsProps } from '../../stitches.config';
 
 type TitleVariants = StitchesGenericVariantsProps<typeof CategoryCardTitle>;
 
