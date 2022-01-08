@@ -17,9 +17,9 @@ import CategoryCard from '../components/CategoryCard';
 import InternalLink from '../components/InternalLink';
 
 /* Types */
-import type { CtaContent } from '../types/Banner';
-import type { Category } from '../types/Categories';
-import type { Product } from '../types/Product';
+import type { CtaContent } from '../types/banner';
+import type { Category } from '../types/categories';
+import type { Product } from '../types/products';
 
 type Props = {
 	ctaBannerContent: CtaContent;

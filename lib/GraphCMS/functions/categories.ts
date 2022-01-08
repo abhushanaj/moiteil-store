@@ -4,7 +4,7 @@ import { graphCMSClient } from '..';
 import { GET_CATEGORIES_LIST, GET_CATEGORY_DETAILS_BY_LINK } from '../../../graphQL/queries/categories';
 
 /* Types */
-import { Category, CategoryDetails } from '../../../types/Categories';
+import { Category, CategoryDetailsWithProducts } from '../../../types/categories';
 
 type CategoryPayload = {
 	first: number;
@@ -16,6 +16,8 @@ export async function getCategoriesList(payload?: CategoryPayload): Promise<{ ca
 }
 
 /* Helper function to details by categry link */
-export async function getDetailsByCategoryLink(categoryLink: string): Promise<{ categoriesList: CategoryDetails }> {
+export async function getDetailsByCategoryLink(
+	categoryLink: string
+): Promise<{ categoriesList: CategoryDetailsWithProducts }> {
 	return graphCMSClient.request(GET_CATEGORY_DETAILS_BY_LINK, { categoryLink });
 }
