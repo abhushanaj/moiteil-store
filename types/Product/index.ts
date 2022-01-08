@@ -4,9 +4,7 @@ export type Product = {
 	id: string;
 	name: string;
 	slug: string;
-	isLatest: boolean;
-	isPopular: boolean;
 	thumbnail: Image;
 };
 
-export type CategoryProductSummary = Omit<Product, 'isLatest' | 'isPopular'>;
+export type CategoryProductSummary = Product;

@@ -1,12 +1,30 @@
 import { graphCMSClient } from '..';
 
 /* GQL Queries */
-import { GET_ALL_PRODUCTS } from '../../../graphQL/queries/products';
+import { GET_LATEST_PRODUCTS, GET_POPULAR_PRODUCTS } from '../../../graphQL/queries/products';
 
 /* Types */
 import { Product } from '../../../types/Product';
 
-/* Helper function to get all products */
-export async function getAllProducts(): Promise<{ products: Product[] }> {
-	return graphCMSClient.request(GET_ALL_PRODUCTS);
+type FilterProductsPayload = {
+	first?: number;
+	isLatest?: boolean;
+	isPopular?: boolean;
+};
+
+/* Helper function to get products based on flags isLatest and isFeatured */
+export async function getFilteredProducts(payload?: FilterProductsPayload): Promise<{ products: Product[] | [] }> {
+	// if requested for popular products
+
+	if (payload?.isPopular) {
+		return graphCMSClient.request(GET_POPULAR_PRODUCTS, { first: payload?.first });
+	}
+
+	// get latest products
+	if (payload?.isLatest) {
+		return graphCMSClient.request(GET_LATEST_PRODUCTS, { first: payload?.first });
+	}
+
+	// return products
+	return { products: [] };
 }
