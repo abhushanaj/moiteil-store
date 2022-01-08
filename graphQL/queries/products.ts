@@ -2,7 +2,7 @@ import { gql } from 'graphql-request';
 
 /* Fragments */
 import { PRODUCT_DETAILS_FRAGMENT } from '../fragments/products';
-import { IMAGE_FRAGMENT } from '../fragments/asset';
+import { IMAGE_FRAGMENT } from '../fragments/image';
 
 export const GET_LATEST_PRODUCTS = gql`
 	query getLatestProducts($first: Int) {
