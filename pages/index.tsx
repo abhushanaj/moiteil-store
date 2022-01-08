@@ -3,10 +3,7 @@ import type { NextPage, GetStaticProps } from 'next';
 /* Lib */
 import { getBannerDetails } from '../lib/GraphCMS/functions/banner';
 import { getCategoriesList } from '../lib/GraphCMS/functions/categories';
-import { getAllProducts } from '../lib/GraphCMS/functions/products';
-
-/* Utils */
-import { filterProductsBy } from '../utils/products';
+import { getFilteredProducts } from '../lib/GraphCMS/functions/products';
 
 /* Components */
 import CTABanner from '../components/CTABanner';
@@ -22,21 +19,22 @@ import type { Product } from '../types/Product';
 type Props = {
 	ctaBannerContent: CtaContent;
 	categoriesLists: Category[];
-	products: Product[];
+	latestProducts: Product[];
+	popularProducts: Product[];
 };
 
 const Home: NextPage<Props> = (props) => {
-	const { ctaBannerContent, categoriesLists, products } = props;
+	const { ctaBannerContent, categoriesLists, latestProducts, popularProducts } = props;
 
 	return (
 		<main style={{ minHeight: '100vh' }}>
 			<CTABanner ctaBannerContent={ctaBannerContent} />
 
-			<ProductsGrid title="Most Popular" productsList={filterProductsBy(products, 'popular')} />
+			<ProductsGrid title="Most Popular" productsList={popularProducts} />
 
 			<CategoriesList categoryLists={categoriesLists} />
 
-			<ProductsGrid title="Latest Products" productsList={filterProductsBy(products, 'latest')} />
+			<ProductsGrid title="Latest Products" productsList={latestProducts} />
 
 			<FeaturesSection />
 		</main>
@@ -47,14 +45,21 @@ export const getStaticProps: GetStaticProps = async () => {
 	try {
 		// get the contents to cta banner
 		const { ctaBanners } = await getBannerDetails();
-		const { categoriesLists } = (await getCategoriesList({ first: 4 })) ?? null;
-		const { products } = (await getAllProducts()) ?? null;
+
+		// get first 4 categories list
+		const { categoriesLists } = (await getCategoriesList({ first: 4 })) ?? [];
+
+		// get first 8 products filtered by isLatest flag
+		const { products: latestProducts } = (await getFilteredProducts({ first: 8, isLatest: true })) ?? [];
+
+		const { products: popularProducts } = (await getFilteredProducts({ first: 8, isPopular: true })) ?? [];
 
 		return {
 			props: {
 				ctaBannerContent: ctaBanners[0] ?? null,
 				categoriesLists,
-				products
+				latestProducts,
+				popularProducts
 			}
 		};
 
