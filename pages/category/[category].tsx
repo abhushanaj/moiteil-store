@@ -2,9 +2,13 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
 /* Styling */
 import {
+	AsideWrapper,
 	CategoryBannerTile,
+	CategoryNavigationList,
+	CategoryNavigationListItem,
 	CategoryProductsGridItem,
-	CategoryProductsGridLayout
+	CategoryProductsGridLayout,
+	pageLayoutStyles
 } from '../../styles/categoryPage.styles';
 
 /* Lib */
@@ -17,6 +21,7 @@ import { formatCategoryLink } from '../../utils/category';
 import ContentLayout from '../../components/Layout/ContentLayout';
 import Breadcrumb from '../../components/Breadcrumb';
 import ProductOverview from '../../components/ProductOverview';
+import InternalLink from '../../components/InternalLink';
 
 /* Types */
 import type { Category, CategoryDetails } from '../../types/Categories';
@@ -27,7 +32,7 @@ type Props = {
 };
 
 const CategoryPage: NextPage<Props> = (props) => {
-	const { categoryWithProducts } = props;
+	const { categoryWithProducts, allCategories } = props;
 
 	return (
 		<main style={{ minHeight: '100vh' }}>
@@ -52,8 +57,23 @@ const CategoryPage: NextPage<Props> = (props) => {
 			</ContentLayout>
 
 			{/*  Page content */}
-			<ContentLayout>
+			<ContentLayout style={pageLayoutStyles} as="section">
 				{/*  Aside navigation and newsletter  */}
+				<AsideWrapper>
+					<h1>Categories</h1>
+					<CategoryNavigationList>
+						{allCategories.map((category) => {
+							return (
+								<CategoryNavigationListItem
+									key={category.id}
+									active={category.categoryLink === categoryWithProducts.categoryLink}
+								>
+									<InternalLink href={category.categoryLink}>{category.name}</InternalLink>
+								</CategoryNavigationListItem>
+							);
+						})}
+					</CategoryNavigationList>
+				</AsideWrapper>
 
 				{/*  Grid Layout for the category products */}
 				<CategoryProductsGridLayout>
