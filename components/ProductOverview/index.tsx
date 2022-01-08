@@ -6,7 +6,7 @@ import GraphCMSImage from '../GraphCMSImage';
 import InternalLink from '../InternalLink';
 
 /* Types */
-import type { Image } from '../../types/Image';
+import type { Image } from '../../types/image';
 
 type Props = {
 	name: string;

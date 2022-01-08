@@ -1,4 +1,4 @@
-import type { Image } from '../Image';
+import type { Image } from './image';
 
 export type CtaContent = {
 	subHeading: string;

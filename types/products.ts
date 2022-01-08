@@ -1,4 +1,4 @@
-import type { Image } from '../Image';
+import type { Image } from './image';
 
 export type Product = {
 	id: string;
@@ -6,5 +6,3 @@ export type Product = {
 	slug: string;
 	thumbnail: Image;
 };
-
-export type CategoryProductSummary = Product;

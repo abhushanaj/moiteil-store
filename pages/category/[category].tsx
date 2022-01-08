@@ -24,11 +24,11 @@ import ProductOverview from '../../components/ProductOverview';
 import InternalLink from '../../components/InternalLink';
 
 /* Types */
-import type { Category, CategoryDetails } from '../../types/Categories';
+import type { Category, CategoryDetailsWithProducts } from '../../types/categories';
 
 type Props = {
 	allCategories: Category[];
-	categoryWithProducts: CategoryDetails;
+	categoryWithProducts: CategoryDetailsWithProducts;
 };
 
 const CategoryPage: NextPage<Props> = (props) => {

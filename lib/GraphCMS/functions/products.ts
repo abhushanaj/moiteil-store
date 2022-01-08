@@ -4,7 +4,7 @@ import { graphCMSClient } from '..';
 import { GET_LATEST_PRODUCTS, GET_POPULAR_PRODUCTS } from '../../../graphQL/queries/products';
 
 /* Types */
-import { Product } from '../../../types/Product';
+import { Product } from '../../../types/products';
 
 type FilterProductsPayload = {
 	first?: number;
