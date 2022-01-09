@@ -22,6 +22,7 @@ import ContentLayout from '../../components/Layout/ContentLayout';
 import Breadcrumb from '../../components/Breadcrumb';
 import ProductOverview from '../../components/ProductOverview';
 import InternalLink from '../../components/InternalLink';
+import AppLayout from '../../components/Layout/AppLayout';
 
 /* Types */
 import type { Category, CategoryDetailsWithProducts } from '../../types/categories';
@@ -35,7 +36,7 @@ const CategoryPage: NextPage<Props> = (props) => {
 	const { categoryWithProducts, allCategories } = props;
 
 	return (
-		<main style={{ minHeight: '100vh' }}>
+		<AppLayout>
 			<CategoryBannerTile>
 				<h1>{categoryWithProducts.name}</h1>
 			</CategoryBannerTile>
@@ -91,7 +92,7 @@ const CategoryPage: NextPage<Props> = (props) => {
 					})}
 				</CategoryProductsGridLayout>
 			</ContentLayout>
-		</main>
+		</AppLayout>
 	);
 };
 
