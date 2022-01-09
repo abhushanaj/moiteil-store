@@ -11,6 +11,13 @@ import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functio
 /* Types */
 
 import { ProductWithoutThumnbail } from '../../types/products';
+import {
+	detailsLayout,
+	ProductVariantDetails,
+	ProductVariantImages,
+	Swatch,
+	SwatchList
+} from '../../styles/productPage.styles';
 
 type Props = {
 	product: ProductWithoutThumnbail;
@@ -34,6 +41,26 @@ const ProductPage: NextPage<Props> = (props) => {
 						}
 					]}
 				/>
+			</ContentLayout>
+
+			{/* Product Variants Details  */}
+			<ContentLayout as="section" style={detailsLayout}>
+				<ProductVariantImages />
+
+				<ProductVariantDetails>
+					<h1>{product.name}</h1>
+					<h2>$ 25.09</h2>
+
+					<SwatchList>
+						<Swatch style={{ background: '#0c0c0c' }} selected title="#0c0c0c" />
+						<Swatch style={{ background: '#322622' }} title="#322622" />
+						<Swatch style={{ background: '#3e3c3d' }} title="#3e3c3d" />
+						<Swatch style={{ background: '#3e3c3d' }} title="#3e3c3d" />
+						<Swatch style={{ background: '#52514f' }} title="#52514f" />
+						<Swatch style={{ background: '#cececc' }} />
+						<Swatch style={{ background: '#e5d9c9' }} />
+					</SwatchList>
+				</ProductVariantDetails>
 			</ContentLayout>
 		</AppLayout>
 	);
