@@ -40,7 +40,8 @@ export const BurgerBtn = styled('button', {
 	},
 
 	'@media only screen and (min-width:800px)': {
-		display: 'none'
+		display: 'none',
+		visibility: 'hidden'
 	},
 
 	'&:hover, &:active': {
@@ -48,19 +49,59 @@ export const BurgerBtn = styled('button', {
 	}
 });
 
+/* Mobile Navbar */
+export const MobileNavbar = styled('nav', {
+	position: 'fixed',
+	right: '0',
+	top: '0',
+	bottom: '0',
+	height: '100vh',
+	bgColor: '$gray1',
+	zIndex: '100',
+	width: '30rem',
+	py: '10rem',
+	boxShadow: '$3',
+	'@media only screen and (min-width:800px)': {
+		display: 'none',
+		visibility: 'hidden'
+	}
+});
+
+/* Navigation Items Styles */
 export const NavbarItemList = styled('ul', {
 	listStyle: 'none',
 	fontSize: '$16',
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
+	zIndex: 'inherit',
 
-	'@media only screen and (max-width:800px)': {
-		display: 'none'
+	variants: {
+		type: {
+			desktop: {
+				'@media only screen and (max-width:800px)': {
+					display: 'none',
+					visibility: 'hidden'
+				}
+			},
+
+			mobile: {
+				'@media only screen and (min-width:800px)': {
+					display: 'none',
+					visibility: 'hidden'
+				}
+			}
+		}
+	},
+
+	defaultVariants: {
+		type: 'desktop'
 	}
 });
 
 export const NavbarItem = styled('li', {
+	zIndex: 'inherit',
+
 	'&::after': {
 		content: '',
 		display: 'block',
@@ -86,5 +127,3 @@ export const NavbarItem = styled('li', {
 		}
 	}
 });
-
-/* Mobile Navbar */
