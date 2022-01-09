@@ -4,7 +4,15 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 /* Styling */
-import { BurgerBtn, MobileNavbar, NavbarItem, NavbarItemList, NavbarLayout, TopBarWrapper } from './index.styles';
+import {
+	BurgerBtn,
+	CloseBtn,
+	DesktopNavbarLayout,
+	MobileNavbarLayout,
+	NavbarItem,
+	NavbarItemList,
+	TopBarWrapper
+} from './index.styles';
 
 /* Components */
 import InternalLink from '../InternalLink';
@@ -26,9 +34,7 @@ function Navbar() {
 		setActiveUrl(url);
 
 		// close the mobile navbar oly if it's open
-		if (isMobileNavActive) {
-			setIsMobileNavActive(false);
-		}
+		setIsMobileNavActive(false);
 	};
 
 	const handleToggleMobileNav = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -50,7 +56,7 @@ function Navbar() {
 	return (
 		<>
 			{/* Big screen navigation */}
-			<NavbarLayout>
+			<DesktopNavbarLayout>
 				<ContentLayout>
 					{/* Top bar wrapper */}
 					<TopBarWrapper>
@@ -76,11 +82,29 @@ function Navbar() {
 						})}
 					</NavbarItemList>
 				</ContentLayout>
-			</NavbarLayout>
+			</DesktopNavbarLayout>
 
 			{/* Small screen navigation */}
 			{isMobileNavActive && (
-				<MobileNavbar animationType={isMobileNavActive ? 'slideIn' : 'slideOut'}>
+				<MobileNavbarLayout animationType={isMobileNavActive ? 'slideIn' : 'slideOut'}>
+					{/* Close button */}
+					<CloseBtn onClick={handleToggleMobileNav}>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clipPath="url(#clip0_34_13)">
+								<path
+									d="M24 20.188L15.685 11.979L23.885 3.697L20.188 0L11.976 8.318L3.666 0.115L0 3.781L8.321 12.021L0.115 20.334L3.781 24L12.018 15.682L20.303 23.885L24 20.188Z"
+									fill="#333237"
+								/>
+							</g>
+							<defs>
+								<clipPath id="clip0_34_13">
+									<rect width="24" height="24" fill="white" />
+								</clipPath>
+							</defs>
+						</svg>
+					</CloseBtn>
+
+					{/*  Mobile Navigation List */}
 					<NavbarItemList type="mobile">
 						{NAV_ITEMS.map((item) => {
 							return (
@@ -90,7 +114,7 @@ function Navbar() {
 							);
 						})}
 					</NavbarItemList>
-				</MobileNavbar>
+				</MobileNavbarLayout>
 			)}
 		</>
 	);

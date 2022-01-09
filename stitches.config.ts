@@ -167,10 +167,12 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 /* Useful animation keyframes */
 export const slideIn = keyframes({
 	'0%': {
-		transform: 'translateX(100%)'
+		transform: 'translateX(100%)',
+		opacity: '0%'
 	},
 	'100%': {
-		transform: 'translateX(0)'
+		transform: 'translateX(0)',
+		opacity: '100%'
 	}
 });
 

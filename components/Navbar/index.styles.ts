@@ -1,6 +1,6 @@
 import { slideIn, slideOut, styled } from '../../stitches.config';
 
-export const NavbarLayout = styled('nav', {
+export const DesktopNavbarLayout = styled('nav', {
 	position: 'sticky',
 	top: 0,
 	left: 0,
@@ -50,7 +50,7 @@ export const BurgerBtn = styled('button', {
 });
 
 /* Mobile Navbar */
-export const MobileNavbar = styled('nav', {
+export const MobileNavbarLayout = styled('nav', {
 	position: 'fixed',
 	right: '0',
 	top: '0',
@@ -61,6 +61,7 @@ export const MobileNavbar = styled('nav', {
 	width: '30rem',
 	py: '10rem',
 	boxShadow: '$3',
+
 	'@media only screen and (min-width:800px)': {
 		display: 'none',
 		visibility: 'hidden'
@@ -72,9 +73,34 @@ export const MobileNavbar = styled('nav', {
 				animation: `${slideIn} 0.5s ease-in-out`
 			},
 			slideOut: {
-				animation: `${slideOut} 0.3s ease-in-out`
+				animation: `${slideOut} 0.5s ease-in-out`
 			}
 		}
+	}
+});
+
+export const CloseBtn = styled('button', {
+	outline: 'none',
+	border: 0,
+	cursor: 'pointer',
+	width: '40px',
+	height: '40px',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	bgColor: '$gray1',
+	borderRadius: '$99999',
+	position: 'fixed',
+	top: '10px',
+	right: '10px',
+
+	svg: {
+		width: '18px',
+		height: '18px'
+	},
+
+	'&:hover, &:active': {
+		bgColor: '$gray4'
 	}
 });
 
