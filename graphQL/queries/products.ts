@@ -31,3 +31,23 @@ export const GET_POPULAR_PRODUCTS = gql`
 	${PRODUCT_DETAILS_FRAGMENT}
 	${IMAGE_FRAGMENT}
 `;
+
+export const GET_PRODUCTS = gql`
+	query getAllProducts($first: Int) {
+		products(first: $first, where: { isLatest: true }) {
+			...ProductDetails
+		}
+	}
+
+	${PRODUCT_DETAILS_FRAGMENT}
+`;
+
+export const GET_PRODUCT_DETAILS_BY_SLUG = gql`
+	query getProductDetailsBySlug($slug: String!) {
+		product(where: { slug: $slug }) {
+			...ProductDetails
+		}
+	}
+
+	${PRODUCT_DETAILS_FRAGMENT}
+`;

@@ -6,3 +6,5 @@ export type Product = {
 	slug: string;
 	thumbnail: Image;
 };
+
+export type ProductWithoutThumnbail = Omit<Product, 'thumbnail'>;

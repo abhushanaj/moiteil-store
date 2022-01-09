@@ -1,10 +1,15 @@
 import { graphCMSClient } from '..';
 
 /* GQL Queries */
-import { GET_LATEST_PRODUCTS, GET_POPULAR_PRODUCTS } from '../../../graphQL/queries/products';
+import {
+	GET_LATEST_PRODUCTS,
+	GET_POPULAR_PRODUCTS,
+	GET_PRODUCTS,
+	GET_PRODUCT_DETAILS_BY_SLUG
+} from '../../../graphQL/queries/products';
 
 /* Types */
-import { Product } from '../../../types/products';
+import { Product, ProductWithoutThumnbail } from '../../../types/products';
 
 type FilterProductsPayload = {
 	first?: number;
@@ -27,4 +32,18 @@ export async function getFilteredProducts(payload?: FilterProductsPayload): Prom
 
 	// return products
 	return { products: [] };
+}
+
+type ProductPayload = {
+	first: number;
+};
+
+/* Helper function to get products to generate dynamic routes */
+export async function getProducts(payload?: ProductPayload): Promise<{ products: ProductWithoutThumnbail[] | [] }> {
+	return graphCMSClient.request(GET_PRODUCTS, { first: payload?.first });
+}
+
+/* Helper function to get product all product details based on slug */
+export async function getProductDetailsBySlug(nameSlug: string): Promise<{ product: ProductWithoutThumnbail | null }> {
+	return graphCMSClient.request(GET_PRODUCT_DETAILS_BY_SLUG, { slug: nameSlug });
 }
