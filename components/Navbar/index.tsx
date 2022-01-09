@@ -80,8 +80,8 @@ function Navbar() {
 
 			{/* Small screen navigation */}
 			{isMobileNavActive && (
-				<MobileNavbar>
-					<NavbarItemList css={{ flexDirection: 'column', height: '100%' }} type="mobile">
+				<MobileNavbar animationType={isMobileNavActive ? 'slideIn' : 'slideOut'}>
+					<NavbarItemList type="mobile">
 						{NAV_ITEMS.map((item) => {
 							return (
 								<NavbarItem key={item.href} active={activeUrl === item.href}>

@@ -1,4 +1,4 @@
-import { styled } from '../../stitches.config';
+import { slideIn, slideOut, styled } from '../../stitches.config';
 
 export const NavbarLayout = styled('nav', {
 	position: 'sticky',
@@ -64,6 +64,17 @@ export const MobileNavbar = styled('nav', {
 	'@media only screen and (min-width:800px)': {
 		display: 'none',
 		visibility: 'hidden'
+	},
+
+	variants: {
+		animationType: {
+			slideIn: {
+				animation: `${slideIn} 0.5s ease-in-out`
+			},
+			slideOut: {
+				animation: `${slideOut} 0.3s ease-in-out`
+			}
+		}
 	}
 });
 
@@ -86,6 +97,9 @@ export const NavbarItemList = styled('ul', {
 			},
 
 			mobile: {
+				flexDirection: 'column',
+				height: '100%',
+
 				'@media only screen and (min-width:800px)': {
 					display: 'none',
 					visibility: 'hidden'
