@@ -164,6 +164,27 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 	prefix: 'moiteil-'
 });
 
+/* Useful animation keyframes */
+export const slideIn = keyframes({
+	'0%': {
+		transform: 'translateX(100%)',
+		opacity: '0%'
+	},
+	'100%': {
+		transform: 'translateX(0)',
+		opacity: '100%'
+	}
+});
+
+export const slideOut = keyframes({
+	'0%': {
+		transform: 'translateX(0)'
+	},
+	'100%': {
+		transform: 'translateX(100%)'
+	}
+});
+
 /* Exported types for Stitches */
 export type StitchesCSS = Stitches.CSS<typeof config>;
 export type StitchesGenericVariantsProps<T> = Stitches.VariantProps<T>;
