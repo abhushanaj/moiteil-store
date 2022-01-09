@@ -32,7 +32,7 @@ export const NAV_ITEMS = [
 		label: 'Gifts'
 	},
 	{
-		href: '/category/Accessories',
+		href: '/category/accessories',
 		label: 'Accessories'
 	}
 ];

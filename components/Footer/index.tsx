@@ -53,14 +53,11 @@ const Footer = () => {
 					<FooterGridItem>
 						{/* Title */}
 						<FooterGridItemTitle>Navigation</FooterGridItemTitle>
+
 						{/* List Items */}
 						<FooterGridItemList>
 							<FooterLinkItem>
-								<InternalLink href="/about">About Us</InternalLink>
-							</FooterLinkItem>
-
-							<FooterLinkItem>
-								<InternalLink href="/categoty/clothing">Clothing</InternalLink>
+								<InternalLink href="/category/clothing">Clothing</InternalLink>
 							</FooterLinkItem>
 
 							<FooterLinkItem>
@@ -73,6 +70,10 @@ const Footer = () => {
 
 							<FooterLinkItem>
 								<InternalLink href="/category/accessories">Accessories</InternalLink>
+							</FooterLinkItem>
+
+							<FooterLinkItem>
+								<InternalLink href="/kids">Kids</InternalLink>
 							</FooterLinkItem>
 						</FooterGridItemList>
 					</FooterGridItem>
