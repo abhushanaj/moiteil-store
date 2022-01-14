@@ -16,6 +16,7 @@ import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functio
 
 /* Types */
 import { ProductVariant, ProductWithVariants } from '../../types/products';
+import ProductCarousel from '../../components/ProductCarousel';
 
 type Props = {
 	product: ProductWithVariants;
@@ -41,6 +42,11 @@ const ProductPage: NextPage<Props> = (props) => {
 		const allSizes = selectedVariant.size.map((size) => size);
 		return allSizes;
 	}, [selectedVariant]);
+
+	// /* Catelog Images */
+	// const catelogImages = useMemo(() => {
+	// 	const allImages = selectedVariant.catelogImages.map((image) => image.url);
+	// }, [selectedVariant]);
 
 	/* Select a new variant using color */
 	const changeSelectedVariantByColor = useCallback((color: string) => {
@@ -92,7 +98,10 @@ const ProductPage: NextPage<Props> = (props) => {
 
 			{/* Product Variants Details  */}
 			<ContentLayout as="section" style={detailsLayout}>
-				<ProductVariantImages />
+				{/* Product Image Carousel */}
+				<ProductVariantImages>
+					<ProductCarousel />
+				</ProductVariantImages>
 
 				{/* Product Details */}
 				<ProductVariantDetails>

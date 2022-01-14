@@ -22,6 +22,7 @@ export const ProductSizeListOption = styled('li', {
 	justifyContent: 'center',
 	alignItems: 'center',
 	cursor: 'pointer',
+	mb: '1rem',
 
 	'&:hover': {
 		bgColor: '$gray4'

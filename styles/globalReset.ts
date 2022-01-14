@@ -53,5 +53,27 @@ export const globalStyles = globalCss({
 		font: 'inherit',
 		textDecoration: 'none',
 		color: 'inherit'
+	},
+
+	/* width */
+	'::-webkit-scrollbar': {
+		width: '5px'
+	},
+
+	/* Track */
+	'::-webkit-scrollbar-track': {
+		bgColor: '$gray',
+		borderRadius: '$5'
+	},
+
+	/* Handle */
+	'::-webkit-scrollbar-thumb': {
+		bgColor: '$gray10',
+		borderRadius: '$10'
+	},
+
+	/* Handle on hover */
+	'::-webkit-scrollbar-thumb:hover': {
+		background: '$gray9'
 	}
 });
