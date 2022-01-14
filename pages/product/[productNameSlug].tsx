@@ -1,5 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 /* Styling */
 import { detailsLayout, ProductVariantDetails, ProductVariantImages } from '../../styles/productPage.styles';
@@ -24,29 +24,54 @@ type Props = {
 const ProductPage: NextPage<Props> = (props) => {
 	const { product } = props;
 
-	// consider variantion[0] as default
+	// consider variantion[0] as default selected variant
 	const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(product.productVariants[0]);
 
-	/* Select a new variant using color */
-	const changeSelectedVariantByColor = (color: string) => {
-		const newSelectedVariant = product.productVariants.find((variant) => variant.color.hex === color);
+	// consider the first size as the default size
+	const [selectedSize, setSelectedSize] = useState<string>(product.productVariants[0].size[0]);
 
-		if (newSelectedVariant) {
-			setSelectedVariant(newSelectedVariant);
-		}
-	};
-
-	// evaluate only once on mount
+	/* Evaluate only once on mount */
 	const possibleColorChoices = useMemo(() => {
 		const colorChoices = product.productVariants.map((variant) => variant.color.hex);
 		return colorChoices;
 	}, []);
 
-	// reevaluate on change for selected variant
+	/* Re evaluate on change for selected variant */
 	const possibleSizeChoices = useMemo(() => {
 		const allSizes = selectedVariant.size.map((size) => size);
 		return allSizes;
 	}, [selectedVariant]);
+
+	/* Select a new variant using color */
+	const changeSelectedVariantByColor = useCallback((color: string) => {
+		const newSelectedVariant = product.productVariants.find((variant) => variant.color.hex === color);
+
+		if (newSelectedVariant) {
+			setSelectedVariant(newSelectedVariant);
+			setSelectedSize(newSelectedVariant.size[0]);
+		}
+	}, []);
+
+	/* Select size for variant */
+	const handleSizeChange = useCallback(
+		(size: string) => {
+			if (possibleSizeChoices.includes(size)) {
+				setSelectedSize(size);
+			}
+		},
+		[possibleSizeChoices]
+	);
+
+	/* Add item to cart */
+	const addItemToCart = useCallback(() => {
+		// const itemDetails: any = {
+		// 	id: selectedVariant.id,
+		// 	size: selectedSize,
+		// 	color: selectedVariant.color.hex,
+		// 	price: selectedVariant.price,
+		// 	imageUrl: selectedVariant.catelogImages[0].url
+		// };
+	}, [selectedSize, selectedVariant]);
 
 	return (
 		<AppLayout>
@@ -69,19 +94,31 @@ const ProductPage: NextPage<Props> = (props) => {
 			<ContentLayout as="section" style={detailsLayout}>
 				<ProductVariantImages />
 
+				{/* Product Details */}
 				<ProductVariantDetails>
 					<h1>{product.name}</h1>
 					<h2>$ {selectedVariant.price}</h2>
 
 					{/* Selection for product variant colors */}
-					<ColorSwatchList
-						colorChoices={possibleColorChoices}
-						selectedColor={selectedVariant.color.hex}
-						handleSwatchClick={changeSelectedVariantByColor}
-					/>
+					{possibleColorChoices.length > 1 && (
+						<ColorSwatchList
+							colorChoices={possibleColorChoices}
+							selectedColor={selectedVariant.color.hex}
+							onColorChange={changeSelectedVariantByColor}
+						/>
+					)}
 
 					{/* Selection for sizes for product variant */}
-					<ProductSizeList sizeChoices={possibleSizeChoices} />
+					<ProductSizeList
+						sizeChoices={possibleSizeChoices}
+						selectedSize={selectedSize}
+						onSizeChange={handleSizeChange}
+					/>
+
+					{/* Temporary add to cart button */}
+					<button type="button" onClick={addItemToCart}>
+						Add to cart
+					</button>
 				</ProductVariantDetails>
 			</ContentLayout>
 		</AppLayout>

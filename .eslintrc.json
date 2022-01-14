@@ -33,7 +33,16 @@
 		"arrow-body-style": "off",
 		"react/prop-types": "off",
 		"no-unused-vars": "off",
-		"@typescript-eslint/no-unused-vars": ["error"]
+		"@typescript-eslint/no-unused-vars": ["error"],
+		"jsx-a11y/no-redundant-roles": [
+			"error",
+			{
+				"nav": ["navigation"],
+				"ul": ["list"],
+				"li": ["listitem"],
+				"button": ["button"]
+			}
+		]
 	},
 	"settings": {
 		"import/resolver": {

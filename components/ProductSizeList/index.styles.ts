@@ -5,22 +5,32 @@ export const ProductSizeListWrapper = styled('ul', {
 	display: 'flex',
 	alignItems: 'center',
 	flexWrap: 'wrap',
-	my: '1rem'
+	my: '2rem',
+	fontSize: '1.4rem',
+	fontWeight: '$medium'
 });
 
 export const ProductSizeListOption = styled('li', {
+	minWidth: '3.4rem',
 	width: 'max-content',
 	height: 'max-content',
 	mr: '1rem',
 	borderRadius: '$5',
 	padding: '2px 5px',
-	borderColor: '1px solid $gray1',
+	boxShadow: '$1',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
 	cursor: 'pointer',
+
+	'&:hover': {
+		bgColor: '$gray4'
+	},
 
 	variants: {
 		selected: {
 			true: {
-				border: '1px solid $gray6'
+				bgColor: '$gray5'
 			}
 		}
 	}

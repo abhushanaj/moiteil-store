@@ -21,5 +21,3 @@ export const ProductVariantDetails = styled('div', {
 		fontSize: '$36'
 	}
 });
-
-

@@ -6,11 +6,11 @@ import { Swatch, SwatchList } from './index.styles';
 type Props = {
 	colorChoices: string[];
 	selectedColor: string;
-	handleSwatchClick: (colorChoice: string) => void;
+	onColorChange: (colorChoice: string) => void;
 };
 
 function ColorSwatchList(props: Props) {
-	const { colorChoices, selectedColor, handleSwatchClick } = props;
+	const { colorChoices, selectedColor, onColorChange } = props;
 
 	return (
 		<SwatchList>
@@ -21,7 +21,7 @@ function ColorSwatchList(props: Props) {
 						style={{ background: colorChoice }}
 						selected={selectedColor === colorChoice}
 						title={colorChoice}
-						onClick={() => handleSwatchClick(colorChoice)}
+						onClick={() => onColorChange(colorChoice)}
 					/>
 				);
 			})}
