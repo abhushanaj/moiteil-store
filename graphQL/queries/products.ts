@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
 
 /* Fragments */
-import { PRODUCT_DETAILS_FRAGMENT } from '../fragments/products';
+import { PRODUCT_DETAILS_FRAGMENT, PRODUCT_VARIANTS_FRAGMENT } from '../fragments/products';
 import { IMAGE_FRAGMENT } from '../fragments/image';
 
 export const GET_LATEST_PRODUCTS = gql`
@@ -46,8 +46,18 @@ export const GET_PRODUCT_DETAILS_BY_SLUG = gql`
 	query getProductDetailsBySlug($slug: String!) {
 		product(where: { slug: $slug }) {
 			...ProductDetails
+
+			productVariants {
+				...ProductVariantsDetails
+
+				catelogImages {
+					...ImageDetails
+				}
+			}
 		}
 	}
 
 	${PRODUCT_DETAILS_FRAGMENT}
+	${PRODUCT_VARIANTS_FRAGMENT}
+	${IMAGE_FRAGMENT}
 `;

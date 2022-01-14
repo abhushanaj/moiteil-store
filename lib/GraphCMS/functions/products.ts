@@ -9,7 +9,7 @@ import {
 } from '../../../graphQL/queries/products';
 
 /* Types */
-import { Product, ProductWithoutThumnbail } from '../../../types/products';
+import { Product, ProductWithoutThumnbail, ProductWithVariants } from '../../../types/products';
 
 type FilterProductsPayload = {
 	first?: number;
@@ -44,6 +44,6 @@ export async function getProducts(payload?: ProductPayload): Promise<{ products:
 }
 
 /* Helper function to get product all product details based on slug */
-export async function getProductDetailsBySlug(nameSlug: string): Promise<{ product: ProductWithoutThumnbail | null }> {
+export async function getProductDetailsBySlug(nameSlug: string): Promise<{ product: ProductWithVariants | null }> {
 	return graphCMSClient.request(GET_PRODUCT_DETAILS_BY_SLUG, { slug: nameSlug });
 }

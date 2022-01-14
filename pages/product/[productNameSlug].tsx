@@ -1,30 +1,52 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { useMemo, useState } from 'react';
+
+/* Styling */
+import { detailsLayout, ProductVariantDetails, ProductVariantImages } from '../../styles/productPage.styles';
 
 /* Components */
 import AppLayout from '../../components/Layout/AppLayout';
 import ContentLayout from '../../components/Layout/ContentLayout';
 import Breadcrumb from '../../components/Breadcrumb';
+import ColorSwatchList from '../../components/ColorSwatchList';
+import ProductSizeList from '../../components/ProductSizeList';
 
 /* Lib */
 import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functions/products';
 
 /* Types */
-
-import { ProductWithoutThumnbail } from '../../types/products';
-import {
-	detailsLayout,
-	ProductVariantDetails,
-	ProductVariantImages,
-	Swatch,
-	SwatchList
-} from '../../styles/productPage.styles';
+import { ProductVariant, ProductWithVariants } from '../../types/products';
 
 type Props = {
-	product: ProductWithoutThumnbail;
+	product: ProductWithVariants;
 };
 
 const ProductPage: NextPage<Props> = (props) => {
 	const { product } = props;
+
+	// consider variantion[0] as default
+	const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(product.productVariants[0]);
+
+	/* Select a new variant using color */
+	const changeSelectedVariantByColor = (color: string) => {
+		const newSelectedVariant = product.productVariants.find((variant) => variant.color.hex === color);
+
+		if (newSelectedVariant) {
+			setSelectedVariant(newSelectedVariant);
+		}
+	};
+
+	// evaluate only once on mount
+	const possibleColorChoices = useMemo(() => {
+		const colorChoices = product.productVariants.map((variant) => variant.color.hex);
+		return colorChoices;
+	}, []);
+
+	// reevaluate on change for selected variant
+	const possibleSizeChoices = useMemo(() => {
+		const allSizes = selectedVariant.size.map((size) => size);
+		return allSizes;
+	}, [selectedVariant]);
 
 	return (
 		<AppLayout>
@@ -49,17 +71,17 @@ const ProductPage: NextPage<Props> = (props) => {
 
 				<ProductVariantDetails>
 					<h1>{product.name}</h1>
-					<h2>$ 25.09</h2>
+					<h2>$ {selectedVariant.price}</h2>
 
-					<SwatchList>
-						<Swatch style={{ background: '#0c0c0c' }} selected title="#0c0c0c" />
-						<Swatch style={{ background: '#322622' }} title="#322622" />
-						<Swatch style={{ background: '#3e3c3d' }} title="#3e3c3d" />
-						<Swatch style={{ background: '#3e3c3d' }} title="#3e3c3d" />
-						<Swatch style={{ background: '#52514f' }} title="#52514f" />
-						<Swatch style={{ background: '#cececc' }} />
-						<Swatch style={{ background: '#e5d9c9' }} />
-					</SwatchList>
+					{/* Selection for product variant colors */}
+					<ColorSwatchList
+						colorChoices={possibleColorChoices}
+						selectedColor={selectedVariant.color.hex}
+						handleSwatchClick={changeSelectedVariantByColor}
+					/>
+
+					{/* Selection for sizes for product variant */}
+					<ProductSizeList sizeChoices={possibleSizeChoices} />
 				</ProductVariantDetails>
 			</ContentLayout>
 		</AppLayout>
