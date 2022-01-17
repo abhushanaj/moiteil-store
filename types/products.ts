@@ -1,3 +1,4 @@
+import type { ProductColor } from './color';
 import type { Image } from './image';
 
 export type Product = {
@@ -6,3 +7,17 @@ export type Product = {
 	slug: string;
 	thumbnail: Image;
 };
+
+export type ProductVariant = {
+	id: string;
+	price: number;
+	color: ProductColor;
+	size: string[];
+	catelogImages: Image[];
+};
+
+export type ProductWithoutThumnbail = Omit<Product, 'thumbnail'>;
+
+export type ProductWithDescription = ProductWithoutThumnbail & { description: string };
+
+export type ProductWithVariants = ProductWithDescription & { productVariants: ProductVariant[] };

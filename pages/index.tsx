@@ -15,6 +15,7 @@ import ContentLayout from '../components/Layout/ContentLayout';
 import ProductOverview from '../components/ProductOverview';
 import CategoryCard from '../components/CategoryCard';
 import InternalLink from '../components/InternalLink';
+import AppLayout from '../components/Layout/AppLayout';
 
 /* Types */
 import type { CtaContent } from '../types/banner';
@@ -32,7 +33,7 @@ const Home: NextPage<Props> = (props) => {
 	const { ctaBannerContent, categoriesLists, latestProducts, popularProducts } = props;
 
 	return (
-		<main style={{ minHeight: '100vh' }}>
+		<AppLayout>
 			{/* CTA Marketing Banner */}
 			<CTABanner ctaBannerContent={ctaBannerContent} />
 
@@ -97,7 +98,7 @@ const Home: NextPage<Props> = (props) => {
 			</ContentLayout>
 
 			<FeaturesSection />
-		</main>
+		</AppLayout>
 	);
 };
 

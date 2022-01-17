@@ -6,7 +6,13 @@
 	},
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["react", "@typescript-eslint"],
-	"extends": ["plugin:react/recommended", "airbnb", "prettier", "plugin:react/jsx-runtime"],
+	"extends": [
+		"plugin:react/recommended",
+		"airbnb",
+		"prettier",
+		"plugin:react/jsx-runtime",
+		"plugin:react-hooks/recommended"
+	],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -30,8 +36,19 @@
 		"react/jsx-props-no-spreading": [2, { "exceptions": ["AppComponent", "Link", "Image", "a", "svg"] }],
 		"react/function-component-definition": "off",
 		"import/prefer-default-export": "off",
-		"arrow-body-style": ["error", "always"],
-		"react/prop-types": "off"
+		"arrow-body-style": "off",
+		"react/prop-types": "off",
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": ["error"],
+		"jsx-a11y/no-redundant-roles": [
+			"error",
+			{
+				"nav": ["navigation"],
+				"ul": ["list"],
+				"li": ["listitem"],
+				"button": ["button"]
+			}
+		]
 	},
 	"settings": {
 		"import/resolver": {

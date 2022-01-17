@@ -7,6 +7,7 @@ export const Wrapper = styled('div', {
 	px: '2rem',
 
 	'@media only screen and (min-width:1440px)': {
-		maxWidth: '140rem'
+		maxWidth: '140rem',
+		px: 'unset'
 	}
 });

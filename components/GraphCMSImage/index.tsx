@@ -6,12 +6,15 @@ import { generateBlurDataUrl, graphCMSImageLoader } from '../../utils/image';
 type Props = ImageProps;
 
 export function GraphCMSImage(props: Props) {
+	const { width, height, ...otherProps } = props;
 	return (
 		<Image
-			placeholder="empty"
 			loader={graphCMSImageLoader}
-			blurDataURL={generateBlurDataUrl({ width: 500, height: 500 })}
-			{...props}
+			placeholder="blur"
+			{...otherProps}
+			blurDataURL={generateBlurDataUrl({ width: Number(width) ?? 0, height: Number(height) ?? 0 })}
+			width={width}
+			height={height}
 		/>
 	);
 }

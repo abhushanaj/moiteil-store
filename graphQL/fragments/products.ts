@@ -7,3 +7,14 @@ export const PRODUCT_DETAILS_FRAGMENT = gql`
 		slug
 	}
 `;
+
+export const PRODUCT_VARIANTS_FRAGMENT = gql`
+	fragment ProductVariantsDetails on ProductVariant {
+		id
+		price
+		color {
+			hex
+		}
+		size
+	}
+`;
