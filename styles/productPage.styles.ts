@@ -27,6 +27,7 @@ export const ProductVariantDetails = styled('div', {
 	bgColor: '$gray1',
 	height: 'max-content',
 	width: 'max-content',
+	minWidth: '45rem',
 	borderRadius: '$10',
 	py: '2rem',
 	px: '2.5rem',
@@ -46,6 +47,7 @@ export const ProductVariantDetails = styled('div', {
 	},
 
 	'@media only screen and (max-width:800px)': {
+		minWidth: 'unset',
 		width: '100%'
 	}
 });
