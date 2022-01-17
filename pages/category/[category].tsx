@@ -3,7 +3,6 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 /* Styling */
 import {
 	AsideWrapper,
-	CategoryBannerTile,
 	CategoryNavigationList,
 	CategoryNavigationListItem,
 	CategoryProductsGridItem,
@@ -23,6 +22,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import ProductOverview from '../../components/ProductOverview';
 import InternalLink from '../../components/InternalLink';
 import AppLayout from '../../components/Layout/AppLayout';
+import BannerTile from '../../components/BannerTile';
 
 /* Types */
 import type { Category, CategoryDetailsWithProducts } from '../../types/categories';
@@ -37,9 +37,9 @@ const CategoryPage: NextPage<Props> = (props) => {
 
 	return (
 		<AppLayout>
-			<CategoryBannerTile>
+			<BannerTile>
 				<h1>{categoryWithProducts.name}</h1>
-			</CategoryBannerTile>
+			</BannerTile>
 
 			{/* Page breadcrumb */}
 			<ContentLayout>
