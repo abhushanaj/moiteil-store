@@ -34,10 +34,30 @@ export const ImageChoiceList = styled('ul', {
 export const ImageChoiceListItem = styled('li', {
 	my: '10px',
 	cursor: 'pointer',
-	bgColor: '$gray5'
+	bgColor: '$gray5',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	border: '4px solid',
+	borderColor: ' $gray3',
+
+	variants: {
+		selected: {
+			true: {
+				borderColor: ' $secondaryOrange'
+			}
+		}
+	}
 });
 
 export const MainImage = styled('div', {
 	ml: '3rem',
-	cursor: 'pointer'
+	display: 'none',
+	variants: {
+		active: {
+			true: {
+				display: 'block'
+			}
+		}
+	}
 });

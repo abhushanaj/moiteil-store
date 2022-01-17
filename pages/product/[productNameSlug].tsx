@@ -31,11 +31,14 @@ const ProductPage: NextPage<Props> = (props) => {
 	// consider the first size as the default size
 	const [selectedSize, setSelectedSize] = useState<string>(product.productVariants[0].size[0]);
 
+	// consider the default variants first catelog image as the default image
+	const [selectedImage, setSelectedImage] = useState<string>(product.productVariants[0].catelogImages[0].url);
+
 	/* Evaluate only once on mount */
 	const possibleColorChoices = useMemo(() => {
 		const colorChoices = product.productVariants.map((variant) => variant.color.hex);
 		return colorChoices;
-	}, []);
+	}, [product.productVariants]);
 
 	/* Re evaluate on change for selected variant */
 	const possibleSizeChoices = useMemo(() => {
@@ -43,20 +46,25 @@ const ProductPage: NextPage<Props> = (props) => {
 		return allSizes;
 	}, [selectedVariant]);
 
-	// /* Catelog Images */
-	// const catelogImages = useMemo(() => {
-	// 	const allImages = selectedVariant.catelogImages.map((image) => image.url);
-	// }, [selectedVariant]);
+	/* Re evaluate on change for selected variant */
+	const possibleCatelogImages = useMemo(() => {
+		const allImages = selectedVariant.catelogImages.map((image) => image.url);
+		return allImages;
+	}, [selectedVariant]);
 
 	/* Select a new variant using color */
-	const changeSelectedVariantByColor = useCallback((color: string) => {
-		const newSelectedVariant = product.productVariants.find((variant) => variant.color.hex === color);
+	const changeSelectedVariantByColor = useCallback(
+		(color: string) => {
+			const newSelectedVariant = product.productVariants.find((variant) => variant.color.hex === color);
 
-		if (newSelectedVariant) {
-			setSelectedVariant(newSelectedVariant);
-			setSelectedSize(newSelectedVariant.size[0]);
-		}
-	}, []);
+			if (newSelectedVariant) {
+				setSelectedImage(newSelectedVariant.catelogImages[0].url);
+				setSelectedVariant(newSelectedVariant);
+				setSelectedSize(newSelectedVariant.size[0]);
+			}
+		},
+		[product.productVariants]
+	);
 
 	/* Select size for variant */
 	const handleSizeChange = useCallback(
@@ -68,6 +76,16 @@ const ProductPage: NextPage<Props> = (props) => {
 		[possibleSizeChoices]
 	);
 
+	/* Select the image */
+	const handleImageChange = useCallback(
+		(url: string) => {
+			if (possibleCatelogImages.includes(url)) {
+				setSelectedImage(url);
+			}
+		},
+		[possibleCatelogImages]
+	);
+
 	/* Add item to cart */
 	const addItemToCart = useCallback(() => {
 		// const itemDetails: any = {
@@ -77,7 +95,7 @@ const ProductPage: NextPage<Props> = (props) => {
 		// 	price: selectedVariant.price,
 		// 	imageUrl: selectedVariant.catelogImages[0].url
 		// };
-	}, [selectedSize, selectedVariant]);
+	}, []);
 
 	return (
 		<AppLayout>
@@ -100,7 +118,11 @@ const ProductPage: NextPage<Props> = (props) => {
 			<ContentLayout as="section" style={detailsLayout}>
 				{/* Product Image Carousel */}
 				<ProductVariantImages>
-					<ProductCarousel />
+					<ProductCarousel
+						productImages={possibleCatelogImages}
+						activeImage={selectedImage}
+						onImageClick={handleImageChange}
+					/>
 				</ProductVariantImages>
 
 				{/* Product Details */}
