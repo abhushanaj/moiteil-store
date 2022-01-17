@@ -1,4 +1,22 @@
-import { slideIn, slideOut, styled } from '../../stitches.config';
+import { slideIn, slideOut, StitchesCSS, styled } from '../../stitches.config';
+
+/* Common reset styles for button on navbar */
+const btnReset: StitchesCSS = {
+	outline: 'none',
+	border: 'none',
+	width: '40px',
+	height: '40px',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	borderRadius: '$99999',
+	bgColor: '$gray1',
+	mb: '1rem',
+
+	'&:hover, &:active, &:focus': {
+		bgColor: '$gray4'
+	}
+};
 
 export const DesktopNavbarLayout = styled('nav', {
 	position: 'sticky',
@@ -21,18 +39,40 @@ export const TopBarWrapper = styled('div', {
 	}
 });
 
-export const BurgerBtn = styled('button', {
-	outline: 'none',
-	border: 0,
-	cursor: 'pointer',
-	width: '40px',
-	height: '40px',
+export const cartButtonLink: StitchesCSS = {
+	position: 'relative',
+
+	...btnReset,
+
+	'&:hover': {
+		bgColor: '$gray4'
+	}
+};
+
+export const ButtonWrapper = styled('div', {
+	display: 'flex',
+	justifyContent: 'space-between',
+	alignItems: 'stretch'
+});
+
+export const CartItemsCount = styled('span', {
+	position: 'absolute',
+	top: '-10px',
+	right: '-10px',
+	bgColor: '$secondaryOrange',
+	color: '$gray1',
+	fontSize: '$12',
+	fontWeight: '$medium',
+	width: '25px',
+	height: '25px',
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
-	bgColor: '$gray1',
-	borderRadius: '$99999',
-	mb: '1rem',
+	borderRadius: '50%'
+});
+
+export const BurgerBtn = styled('button', {
+	...btnReset,
 
 	svg: {
 		width: '18px',
@@ -42,10 +82,6 @@ export const BurgerBtn = styled('button', {
 	'@media only screen and (min-width:800px)': {
 		display: 'none',
 		visibility: 'hidden'
-	},
-
-	'&:hover, &:active': {
-		bgColor: '$gray4'
 	}
 });
 
@@ -80,27 +116,16 @@ export const MobileNavbarLayout = styled('nav', {
 });
 
 export const CloseBtn = styled('button', {
-	outline: 'none',
-	border: 0,
-	cursor: 'pointer',
-	width: '40px',
-	height: '40px',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-	bgColor: '$gray1',
-	borderRadius: '$99999',
+	...btnReset,
+
 	position: 'fixed',
+
 	top: '10px',
 	right: '10px',
 
 	svg: {
 		width: '18px',
 		height: '18px'
-	},
-
-	'&:hover, &:active': {
-		bgColor: '$gray4'
 	}
 });
 

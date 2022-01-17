@@ -6,6 +6,9 @@ import Image from 'next/image';
 /* Styling */
 import {
 	BurgerBtn,
+	ButtonWrapper,
+	cartButtonLink,
+	CartItemsCount,
 	CloseBtn,
 	DesktopNavbarLayout,
 	MobileNavbarLayout,
@@ -23,6 +26,7 @@ import { NAV_ITEMS } from './data';
 
 /* Assets */
 import moiteilLogo from '../../public/moiteil-logo.png';
+import cartIcon from '../../public/cart-icon.svg';
 
 function Navbar() {
 	const router = useRouter();
@@ -64,11 +68,17 @@ function Navbar() {
 							<Image src={moiteilLogo} />
 						</InternalLink>
 
-						<BurgerBtn onClick={handleToggleMobileNav}>
-							<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								<path d="M24 6H0V2H24V6ZM24 10H0V14H24V10ZM24 18H0V22H24V18Z" fill="#333237" />
-							</svg>
-						</BurgerBtn>
+						<ButtonWrapper>
+							<InternalLink href="/cart" style={cartButtonLink}>
+								<Image src={cartIcon} />
+								<CartItemsCount>24</CartItemsCount>
+							</InternalLink>
+							<BurgerBtn onClick={handleToggleMobileNav}>
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path d="M24 6H0V2H24V6ZM24 10H0V14H24V10ZM24 18H0V22H24V18Z" fill="#333237" />
+								</svg>
+							</BurgerBtn>
+						</ButtonWrapper>
 					</TopBarWrapper>
 
 					{/* Navigation List */}
