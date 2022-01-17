@@ -46,6 +46,7 @@ export const GET_PRODUCT_DETAILS_BY_SLUG = gql`
 	query getProductDetailsBySlug($slug: String!) {
 		product(where: { slug: $slug }) {
 			...ProductDetails
+			description
 
 			productVariants {
 				...ProductVariantsDetails

@@ -17,4 +17,7 @@ export type ProductVariant = {
 };
 
 export type ProductWithoutThumnbail = Omit<Product, 'thumbnail'>;
-export type ProductWithVariants = ProductWithoutThumnbail & { productVariants: ProductVariant[] };
+
+export type ProductWithDescription = ProductWithoutThumnbail & { description: string };
+
+export type ProductWithVariants = ProductWithDescription & { productVariants: ProductVariant[] };

@@ -13,6 +13,28 @@ export const detailsLayout: StitchesCSS = {
 	}
 };
 
+export const descriptionLayout: StitchesCSS = {
+	my: '10rem',
+
+	h2: {
+		fontSize: '$30'
+	},
+
+	div: {
+		fontSize: '$16',
+		my: '2rem',
+
+		p: {
+			my: '1rem'
+		},
+
+		ul: {
+			my: '2rem',
+			pl: '4rem'
+		}
+	}
+};
+
 export const ProductVariantImages = styled('div', {
 	display: 'flex',
 	justifyContent: 'center',

@@ -2,7 +2,12 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useCallback, useMemo, useState } from 'react';
 
 /* Styling */
-import { detailsLayout, ProductVariantDetails, ProductVariantImages } from '../../styles/productPage.styles';
+import {
+	descriptionLayout,
+	detailsLayout,
+	ProductVariantDetails,
+	ProductVariantImages
+} from '../../styles/productPage.styles';
 
 /* Components */
 import AppLayout from '../../components/Layout/AppLayout';
@@ -13,6 +18,9 @@ import ProductSizeList from '../../components/ProductSizeList';
 
 /* Lib */
 import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functions/products';
+
+/* Utils */
+import { parseMarkdownStringToHtml } from '../../utils/parser';
 
 /* Types */
 import { ProductVariant, ProductWithVariants } from '../../types/products';
@@ -152,6 +160,13 @@ const ProductPage: NextPage<Props> = (props) => {
 					</button>
 				</ProductVariantDetails>
 			</ContentLayout>
+
+			{/* Product Description */}
+			<ContentLayout as="section" style={descriptionLayout}>
+				<h2>Description</h2>
+				{/* eslint-disable-next-line react/no-danger */}
+				<div dangerouslySetInnerHTML={{ __html: product.description }} />
+			</ContentLayout>
 		</AppLayout>
 	);
 };
@@ -198,9 +213,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			};
 		}
 
+		const { description } = product;
+
 		return {
 			props: {
-				product
+				product: {
+					...product,
+					description: await parseMarkdownStringToHtml(description)
+				}
 			}
 		};
 	} catch (err) {
