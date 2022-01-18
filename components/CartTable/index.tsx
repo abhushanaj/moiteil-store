@@ -9,7 +9,8 @@ import {
 	CartItemInfo,
 	CartItemText,
 	QtyBtn,
-	CartSummary
+	CartSummary,
+	QtyBtnWrapper
 } from './index.styles';
 
 /* Components */
@@ -17,22 +18,38 @@ import GraphCMSImage from '../GraphCMSImage';
 import EmptyCartMessage from '../EmptyCartMessage';
 
 const cartItems: any[] = [
-	// {
-	// 	id: 'sdsdsdd',
-	// 	name: 'Merchify T-Shirt',
-	// 	price: '20.00',
-	// 	size: 'M',
-	// 	color: '#fff',
-	// 	image: 'https://media.graphcms.com/SFnYY4X6T2amyqAEUxiA'
-	// },
-	// {
-	// 	id: 'sdsdsdd',
-	// 	name: 'Merchify T-Shirt',
-	// 	price: '20.00',
-	// 	size: 'M',
-	// 	color: '#fff',
-	// 	image: 'https://media.graphcms.com/SFnYY4X6T2amyqAEUxiA'
-	// }
+	{
+		id: 'sdsdsdd',
+		name: 'Merchify Unisex Dark T-Shirt',
+		price: '20.00',
+		size: 'M',
+		color: '#fff',
+		image: 'https://media.graphcms.com/SFnYY4X6T2amyqAEUxiA'
+	},
+	{
+		id: 'sdsdsdd',
+		name: 'Merchify Unisex Tank Top',
+		price: '20.00',
+		size: 'M',
+		color: '#fff',
+		image: 'https://media.graphcms.com/SFnYY4X6T2amyqAEUxiA'
+	},
+	{
+		id: 'sdsdsdd',
+		name: 'Moiteil Eco Friendly Dark Tote Bag',
+		price: '20.00',
+		size: 'M',
+		color: '#fff',
+		image: 'https://media.graphcms.com/SFnYY4X6T2amyqAEUxiA'
+	},
+	{
+		id: 'sdsdsdd',
+		name: 'Moiteil Inspirational Wall Poster',
+		price: '20.00',
+		size: 'M',
+		color: '#fff',
+		image: 'https://media.graphcms.com/SFnYY4X6T2amyqAEUxiA'
+	}
 ];
 
 function CartTable() {
@@ -45,10 +62,15 @@ function CartTable() {
 			{/* Cart Table */}
 			<Table>
 				<TableRow>
-					<TableItem type="header">SL.No</TableItem>
-					<TableItem type="header">Product Details</TableItem>
-					<TableItem type="header">Ouantity</TableItem>
-					<TableItem type="header">Sub Total</TableItem>
+					<TableItem type="header">
+						<p>#</p>
+					</TableItem>
+					<TableItem type="header">
+						<p>Product Details</p>
+					</TableItem>
+					<TableItem type="header">
+						<p>Quantity</p>
+					</TableItem>
 				</TableRow>
 
 				{/* Rows for Cart Items */}
@@ -58,28 +80,31 @@ function CartTable() {
 						<TableRow key={cartItem.id}>
 							<TableItem type="data">1.</TableItem>
 
-							<TableItem type="data">
+							<TableItem>
 								<CartItem>
 									<CartItemImage>
 										<GraphCMSImage src={cartItem.image} width={100} height={100} />
 									</CartItemImage>
 
 									<CartItemInfo>
-										<CartItemText type="name">{cartItem.name}</CartItemText>
-										<CartItemText>$ {cartItem.price}</CartItemText>
+										<CartItemText type="name">{cartItem.name} </CartItemText>
+										<CartItemText>{`$${cartItem.price} (x3)`}</CartItemText>
 										<CartItemText>{cartItem.size}</CartItemText>
+										<CartItemText type="bold">
+											Sub Total: <span>$ 1,000</span>
+										</CartItemText>
 									</CartItemInfo>
 								</CartItem>
 							</TableItem>
 
-							<TableItem type="data">
-								<QtyBtn type="button">❮</QtyBtn>
-								<CartItemText type="quantity">100</CartItemText>
-								<QtyBtn type="button">❯</QtyBtn>
-							</TableItem>
+							<TableItem>
+								<QtyBtnWrapper>
+									<QtyBtn type="button">+</QtyBtn>
 
-							<TableItem type="data">
-								<CartItemText type="bold">$ 99.00</CartItemText>
+									<CartItemText type="quantity">100</CartItemText>
+
+									<QtyBtn type="button">-</QtyBtn>
+								</QtyBtnWrapper>
 							</TableItem>
 						</TableRow>
 					);
@@ -89,7 +114,7 @@ function CartTable() {
 			{/* Cart Summary */}
 			<CartSummary>
 				<p>
-					Total Amount:
+					Checkout Amount:
 					<span>$1,0000</span>
 				</p>
 				<button type="button">Checkout</button>

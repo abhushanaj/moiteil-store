@@ -62,7 +62,8 @@ export const globalStyles = globalCss({
 
 	/* width */
 	'::-webkit-scrollbar': {
-		width: '5px'
+		width: '5px',
+		height: '5px'
 	},
 
 	/* Track */
