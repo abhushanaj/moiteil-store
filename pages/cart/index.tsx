@@ -8,12 +8,13 @@ import AppLayout from '../../components/Layout/AppLayout';
 import ContentLayout from '../../components/Layout/ContentLayout';
 import Breadcrumb from '../../components/Breadcrumb';
 import BannerTile from '../../components/BannerTile';
+import CartTable from '../../components/CartTable';
 
 const CartPage: NextPage = () => {
 	return (
 		<AppLayout>
 			<BannerTile>
-				<h1>Cart</h1>
+				<h1>Your Cart</h1>
 			</BannerTile>
 
 			<ContentLayout>
@@ -29,6 +30,10 @@ const CartPage: NextPage = () => {
 						}
 					]}
 				/>
+			</ContentLayout>
+
+			<ContentLayout>
+				<CartTable />
 			</ContentLayout>
 		</AppLayout>
 	);
