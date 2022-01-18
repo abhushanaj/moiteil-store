@@ -24,7 +24,8 @@ export const globalStyles = globalCss({
 		color: '$textColor',
 		bgColor: '$gray3',
 		fontWeight: '$regular',
-		fontSize: '$16'
+		fontSize: '$16',
+		overflowX: 'hidden'
 	},
 	/* 5. Improve media defaults */
 	'img,picture,video,canvas,svg': {
@@ -52,12 +53,17 @@ export const globalStyles = globalCss({
 	a: {
 		font: 'inherit',
 		textDecoration: 'none',
-		color: 'inherit'
+		color: 'inherit',
+
+		'&:focus': {
+			outline: `1px solid $secondaryOrange`
+		}
 	},
 
 	/* width */
 	'::-webkit-scrollbar': {
-		width: '5px'
+		width: '5px',
+		height: '5px'
 	},
 
 	/* Track */
