@@ -17,8 +17,20 @@ export const NewsletterContentWrapper = styled('div', {
 	my: '2rem',
 	textAlign: 'center',
 
+	'@media only screen and (max-width:1250px)': {
+		width: '90%'
+	},
+
 	h3: {
-		fontSize: '4rem'
+		fontSize: '4rem',
+
+		'@media only screen and (max-width:800px)': {
+			fontSize: '$30'
+		},
+
+		'@media only screen and (max-width:500px)': {
+			fontSize: '$26'
+		}
 	},
 
 	input: {
