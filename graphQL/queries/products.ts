@@ -34,7 +34,7 @@ export const GET_POPULAR_PRODUCTS = gql`
 
 export const GET_PRODUCTS = gql`
 	query getAllProducts($first: Int) {
-		products(first: $first, where: { isLatest: true }) {
+		products(first: $first) {
 			...ProductDetails
 		}
 	}
