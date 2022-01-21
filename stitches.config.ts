@@ -158,10 +158,7 @@ export const { styled, css, globalCss, keyframes, theme, createTheme, getCssText
 	},
 
 	/* Setting up media breakpoints if needed */
-	media: {},
-
-	/* Setting up a prefix moiteil on all classes */
-	prefix: 'moiteil-'
+	media: {}
 });
 
 /* Useful animation keyframes */
