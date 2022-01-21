@@ -19,7 +19,7 @@ function EmptyCartMessage() {
 
 			<p>There are no items in your cart yet.</p>
 
-			<Button css={{ mx: 'auto' }} onClick={() => router.push('/')} title='Visit home page'>
+			<Button css={{ mx: 'auto' }} onClick={() => router.push('/')} title="Visit home page">
 				Start Shopping
 			</Button>
 		</EmptyCartMessageWrapper>
