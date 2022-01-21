@@ -50,6 +50,13 @@ export const CategoryNavigationListItem = styled('li', {
 	alignItems: 'center',
 	overflow: 'hidden',
 
+	a: {
+		outline: 'none !important',
+		'&:focus': {
+			color: '$secondaryOrange'
+		}
+	},
+
 	variants: {
 		active: {
 			true: {

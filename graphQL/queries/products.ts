@@ -8,7 +8,7 @@ export const GET_LATEST_PRODUCTS = gql`
 	query getLatestProducts($first: Int) {
 		products(first: $first, where: { isLatest: true }) {
 			...ProductDetails
-			startingPrice
+
 			thumbnail {
 				...ImageDetails
 			}
@@ -23,7 +23,7 @@ export const GET_POPULAR_PRODUCTS = gql`
 	query getLatestProducts($first: Int) {
 		products(first: $first, where: { isPopular: true }) {
 			...ProductDetails
-			startingPrice
+
 			thumbnail {
 				...ImageDetails
 			}
