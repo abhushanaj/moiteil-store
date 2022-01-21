@@ -7,6 +7,7 @@ type CartContextType = {
 	totalCartItems: number;
 	totalCartPrice: number;
 	cartItems: CartItem[];
+	clearCart: () => void;
 	addItemToCart: (itemToAdd: AddItemToCart) => void;
 };
 
@@ -78,6 +79,8 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 		setCartItems([]);
 	}, []);
 
+
+	// on mount, check if there is any items in the cart
 	useEffect(() => {
 		// on mount if the cart is present in local storage and use it if yes
 		const hasPreviousCartItem = JSON.parse(localStorage.getItem('moiteilStoreCart') || '[]');
@@ -87,6 +90,8 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 		}
 	}, []);
 
+
+	// on change for cartItems update the local storage
 	useEffect(() => {
 		localStorage.setItem('moiteilStoreCart', JSON.stringify(cartItems));
 	}, [cartItems]);
