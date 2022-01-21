@@ -5,6 +5,7 @@ export type Product = {
 	id: string;
 	name: string;
 	slug: string;
+	startingPrice: number;
 	thumbnail: Image;
 };
 
@@ -16,7 +17,7 @@ export type ProductVariant = {
 	catelogImages: Image[];
 };
 
-export type ProductWithoutThumnbail = Omit<Product, 'thumbnail'>;
+export type ProductWithoutThumnbail = Omit<Product, 'thumbnail' | 'startingPrice'>;
 
 export type ProductWithDescription = ProductWithoutThumnbail & { description: string };
 
