@@ -69,9 +69,7 @@ const CategoryPage: NextPage<Props> = (props) => {
 									key={category.id}
 									active={category.categoryLink === categoryWithProducts.categoryLink}
 								>
-									<InternalLink href={category.categoryLink} style={{ 'outline': 'none' }}>
-										{category.name}
-									</InternalLink>
+									<InternalLink href={category.categoryLink}>{category.name}</InternalLink>
 								</CategoryNavigationListItem>
 							);
 						})}
