@@ -16,13 +16,13 @@ import {
 /* Components */
 import GraphCMSImage from '../GraphCMSImage';
 import EmptyCartMessage from '../EmptyCartMessage';
+import Button from '../Button';
 
 /* Consumer */
 import { useCart } from '../../context/CartContext';
 
 /* Utils */
 import { formatSizeChoice } from '../../utils/product';
-import Button from '../Button';
 
 function CartTable() {
 	const { totalCartPrice, cartItems, clearCart, removeItemFromCart, addItemToCart } = useCart();
