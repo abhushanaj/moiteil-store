@@ -16,6 +16,7 @@ import ProductOverview from '../components/ProductOverview';
 import CategoryCard from '../components/CategoryCard';
 import InternalLink from '../components/InternalLink';
 import AppLayout from '../components/Layout/AppLayout';
+import Newsletter from '../components/Newsletter';
 
 /* Types */
 import type { CtaContent } from '../types/banner';
@@ -95,6 +96,11 @@ const Home: NextPage<Props> = (props) => {
 						);
 					})}
 				</ProductsGridLayout>
+			</ContentLayout>
+
+			{/* Newsletter */}
+			<ContentLayout style={{ my: '14rem' }}>
+				<Newsletter />
 			</ContentLayout>
 
 			<FeaturesSection />
