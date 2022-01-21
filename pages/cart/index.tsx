@@ -21,7 +21,7 @@ const CartPage: NextPage = () => {
 				<Breadcrumb
 					style={{ transform: 'translateY(-20px)' }}
 					currentPath={[
-						{ href: '/', label: 'Store', isActive: false, isDisabled: true },
+						{ href: '/category', label: 'Store', isActive: false, isDisabled: false },
 						{
 							href: `/cart`,
 							label: 'Cart',
