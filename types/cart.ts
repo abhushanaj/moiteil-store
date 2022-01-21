@@ -11,4 +11,10 @@ export type CartItem = {
 	quantity?: number;
 };
 
+export type RemoveItemFromCart = {
+	id: string;
+	size: string;
+	color: ProductColor;
+};
+
 export type AddItemToCart = Omit<CartItem, 'quantity'>;

@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import CopyrightFooter from '../components/CopyrightFooter';
 import Navbar from '../components/Navbar';
 
-/* Provbiders */
+/* Providers */
 import { CartProvider } from '../context/CartContext';
 
 function MyApp({ Component: AppComponent, pageProps }: AppProps) {

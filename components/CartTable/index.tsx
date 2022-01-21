@@ -24,7 +24,7 @@ import { useCart } from '../../context/CartContext';
 import { formatSizeChoice } from '../../utils/product';
 
 function CartTable() {
-	const { totalCartPrice, cartItems, clearCart } = useCart();
+	const { totalCartPrice, cartItems, clearCart, removeItemFromCart, addItemToCart } = useCart();
 
 	if (cartItems && cartItems.length === 0) {
 		return <EmptyCartMessage />;
@@ -54,7 +54,7 @@ function CartTable() {
 				{cartItems.map((cartItem, index) => {
 					return (
 						<TableRow key={cartItem.id + cartItem.size + cartItem.color}>
-							<TableItem type="data">{index}</TableItem>
+							<TableItem type="data">{index + 1}</TableItem>
 
 							<TableItem>
 								<CartItem>
@@ -82,11 +82,36 @@ function CartTable() {
 
 							<TableItem>
 								<QtyBtnWrapper>
-									<QtyBtn type="button">+</QtyBtn>
+									<QtyBtn
+										type="button"
+										onClick={() => {
+											addItemToCart({
+												id: cartItem.id,
+												size: cartItem.size,
+												color: cartItem.color,
+												price: cartItem.price,
+												image: cartItem.image,
+												name: cartItem.name
+											});
+										}}
+									>
+										+
+									</QtyBtn>
 
 									<CartItemText type="quantity">{cartItem.quantity}</CartItemText>
 
-									<QtyBtn type="button">-</QtyBtn>
+									<QtyBtn
+										type="button"
+										onClick={() => {
+											removeItemFromCart({
+												id: cartItem.id,
+												size: cartItem.size,
+												color: cartItem.color
+											});
+										}}
+									>
+										-
+									</QtyBtn>
 								</QtyBtnWrapper>
 							</TableItem>
 						</TableRow>

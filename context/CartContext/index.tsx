@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 /* Types */
-import { AddItemToCart, CartItem } from '../../types/cart';
+import type { AddItemToCart, CartItem, RemoveItemFromCart } from '../../types/cart';
 
 type CartContextType = {
 	totalCartItems: number;
@@ -9,11 +9,20 @@ type CartContextType = {
 	cartItems: CartItem[];
 	clearCart: () => void;
 	addItemToCart: (itemToAdd: AddItemToCart) => void;
+	removeItemFromCart: (itemToRemove: RemoveItemFromCart) => void;
 };
 
 const CartContext = createContext<CartContextType>({} as CartContextType);
 
-export const useCart = () => useContext(CartContext);
+export const useCart = () => {
+	const contextValue = useContext(CartContext);
+
+	if (!contextValue.cartItems) {
+		throw new Error('To use `useCart() hook, the component must have a parent CartProvider');
+	} else {
+		return contextValue;
+	}
+};
 
 export function CartProvider(props: React.PropsWithChildren<{}>) {
 	const { children } = props;
@@ -43,20 +52,20 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 		(itemToAdd: AddItemToCart) => {
 			// check if the items exists in cart
 			const doesItemExists = cartItems.find((item) => {
-				return item.id === itemToAdd.id && item.size === itemToAdd.size && item.color === itemToAdd.color;
+				return item.id === itemToAdd.id && item.size === itemToAdd.size && item.color.hex === itemToAdd.color.hex;
 			});
 
 			// if does not add the item to cart
 			if (!doesItemExists) {
 				setCartItems((prevCartItems) => {
-					return [...prevCartItems, itemToAdd];
+					return [...prevCartItems, { ...itemToAdd, quantity: 1 }];
 				});
 			}
 			// esle update the quantity to item that matches
 			else {
 				setCartItems((prevCartItems) => {
 					const updatedCartItems = prevCartItems.map((item) => {
-						if (item.id === itemToAdd.id && item.size === itemToAdd.size && item.color === itemToAdd.color) {
+						if (item.id === itemToAdd.id && item.size === itemToAdd.size && item.color.hex === itemToAdd.color.hex) {
 							return { ...item, quantity: (item.quantity || 0) + 1 };
 						}
 
@@ -66,9 +75,54 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 					return updatedCartItems;
 				});
 			}
+		},
 
-			// finally update the local storage
-			localStorage.setItem('moiteilStoreCart', JSON.stringify(cartItems));
+		[cartItems]
+	);
+
+	/* Remove Item from cart */
+	const removeItemFromCart = useCallback(
+		(itemToRemove: RemoveItemFromCart) => {
+			// check if the items exists in cart
+			const doesItemExists = cartItems.find((item) => {
+				return (
+					item.id === itemToRemove.id && item.size === itemToRemove.size && item.color.hex === itemToRemove.color.hex
+				);
+			});
+
+			// run only if item exists in cart
+
+			if (doesItemExists) {
+				const currentQty = doesItemExists.quantity;
+
+				// if qty=1 then simply remove the item
+				if (currentQty === 1) {
+					setCartItems((prevCartItems) => {
+						return prevCartItems.filter((cartItem) => {
+							const uniqueCheck =
+								cartItem.id === itemToRemove.id &&
+								cartItem.size === itemToRemove.size &&
+								cartItem.color.hex === itemToRemove.color.hex;
+
+							return !uniqueCheck;
+						});
+					});
+				}
+				// else reduce the quanity by 1
+				setCartItems((prevCartItems) => {
+					return prevCartItems.map((cartItem) => {
+						const uniqueCheck =
+							cartItem.id === itemToRemove.id &&
+							cartItem.size === itemToRemove.size &&
+							cartItem.color.hex === itemToRemove.color.hex;
+
+						if (uniqueCheck) {
+							return { ...cartItem, quantity: (cartItem.quantity || 0) - 1 };
+						}
+						return cartItem;
+					});
+				});
+			}
 		},
 
 		[cartItems]
@@ -79,7 +133,6 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 		setCartItems([]);
 	}, []);
 
-
 	// on mount, check if there is any items in the cart
 	useEffect(() => {
 		// on mount if the cart is present in local storage and use it if yes
@@ -89,7 +142,6 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 			setCartItems(hasPreviousCartItem);
 		}
 	}, []);
-
 
 	// on change for cartItems update the local storage
 	useEffect(() => {
@@ -102,9 +154,10 @@ export function CartProvider(props: React.PropsWithChildren<{}>) {
 			totalCartPrice,
 			cartItems,
 			addItemToCart,
+			removeItemFromCart,
 			clearCart
 		};
-	}, [totalCartItems, totalCartPrice, addItemToCart, clearCart, cartItems]);
+	}, [totalCartItems, totalCartPrice, addItemToCart, clearCart, cartItems, removeItemFromCart]);
 
 	return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
