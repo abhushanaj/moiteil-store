@@ -16,6 +16,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import ColorSwatchList from '../../components/ColorSwatchList';
 import ProductSizeList from '../../components/ProductSizeList';
 import ProductCarousel from '../../components/ProductCarousel';
+import Button from '../../components/Button';
 
 /* Lib */
 import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functions/products';
@@ -164,9 +165,9 @@ const ProductPage: NextPage<Props> = (props) => {
 					/>
 
 					{/* Temporary add to cart button */}
-					<button type="button" onClick={handleAddItemToCart}>
+					<Button type="button" onClick={handleAddItemToCart}>
 						Add to cart
-					</button>
+					</Button>
 				</ProductVariantDetails>
 			</ContentLayout>
 

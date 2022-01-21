@@ -16,6 +16,7 @@ import {
 /* Components */
 import GraphCMSImage from '../GraphCMSImage';
 import EmptyCartMessage from '../EmptyCartMessage';
+import Button from '../Button';
 
 /* Consumer */
 import { useCart } from '../../context/CartContext';
@@ -33,9 +34,9 @@ function CartTable() {
 	return (
 		<>
 			{/* Clear Cart Button */}
-			<button type="button" onClick={clearCart}>
+			<Button type="button" outlined onClick={clearCart} css={{ my: '2rem', ml: 'auto' }}>
 				Clear Cart
-			</button>
+			</Button>
 			{/* Cart Table */}
 			<Table>
 				<TableRow>
@@ -125,7 +126,7 @@ function CartTable() {
 					Checkout Amount:
 					<span>{`$${totalCartPrice}`}</span>
 				</p>
-				<button type="button">Checkout</button>
+				<Button type="button">Checkout</Button>
 			</CartSummary>
 		</>
 	);
