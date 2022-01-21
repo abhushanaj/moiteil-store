@@ -120,7 +120,7 @@ const ProductPage: NextPage<Props> = (props) => {
 				<Breadcrumb
 					style={{ my: '3rem' }}
 					currentPath={[
-						{ href: '/', label: 'Store', isActive: false, isDisabled: true },
+						{ href: '/category', label: 'Store', isActive: false, isDisabled: false },
 						{
 							href: `/product/${product.slug}`,
 							label: product.name,
