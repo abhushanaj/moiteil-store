@@ -15,6 +15,7 @@ import ContentLayout from '../../components/Layout/ContentLayout';
 import Breadcrumb from '../../components/Breadcrumb';
 import ColorSwatchList from '../../components/ColorSwatchList';
 import ProductSizeList from '../../components/ProductSizeList';
+import ProductCarousel from '../../components/ProductCarousel';
 
 /* Lib */
 import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functions/products';
@@ -22,9 +23,12 @@ import { getProductDetailsBySlug, getProducts } from '../../lib/GraphCMS/functio
 /* Utils */
 import { parseMarkdownStringToHtml } from '../../utils/parser';
 
+/* Consumers */
+import { useCart } from '../../context/CartContext';
+
 /* Types */
-import { ProductVariant, ProductWithVariants } from '../../types/products';
-import ProductCarousel from '../../components/ProductCarousel';
+import type { ProductVariant, ProductWithVariants } from '../../types/products';
+import type { AddItemToCart } from '../../types/cart';
 
 type Props = {
 	product: ProductWithVariants;
@@ -32,6 +36,8 @@ type Props = {
 
 const ProductPage: NextPage<Props> = (props) => {
 	const { product } = props;
+
+	const { addItemToCart } = useCart();
 
 	// consider variantion[0] as default selected variant
 	const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(product.productVariants[0]);
@@ -94,16 +100,19 @@ const ProductPage: NextPage<Props> = (props) => {
 		[possibleCatelogImages]
 	);
 
-	/* Add item to cart */
-	const addItemToCart = useCallback(() => {
-		// const itemDetails: any = {
-		// 	id: selectedVariant.id,
-		// 	size: selectedSize,
-		// 	color: selectedVariant.color.hex,
-		// 	price: selectedVariant.price,
-		// 	imageUrl: selectedVariant.catelogImages[0].url
-		// };
-	}, []);
+	/* Handle add item to cart */
+	const handleAddItemToCart = useCallback(() => {
+		const itemToAdd: AddItemToCart = {
+			id: selectedVariant.id,
+			name: product.name,
+			image: selectedVariant.catelogImages[0],
+			price: selectedVariant.price,
+			size: selectedSize,
+			color: selectedVariant.color
+		};
+
+		addItemToCart(itemToAdd);
+	}, [addItemToCart, selectedVariant, selectedSize, product.name]);
 
 	return (
 		<AppLayout>
@@ -155,7 +164,7 @@ const ProductPage: NextPage<Props> = (props) => {
 					/>
 
 					{/* Temporary add to cart button */}
-					<button type="button" onClick={addItemToCart}>
+					<button type="button" onClick={handleAddItemToCart}>
 						Add to cart
 					</button>
 				</ProductVariantDetails>

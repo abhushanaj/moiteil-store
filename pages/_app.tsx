@@ -8,15 +8,18 @@ import Footer from '../components/Footer';
 import CopyrightFooter from '../components/CopyrightFooter';
 import Navbar from '../components/Navbar';
 
+/* Provbiders */
+import { CartProvider } from '../context/CartContext';
+
 function MyApp({ Component: AppComponent, pageProps }: AppProps) {
 	return (
-		<>
+		<CartProvider>
 			{globalStyles()}
 			<Navbar />
 			<AppComponent {...pageProps} />
 			<Footer />
 			<CopyrightFooter />
-		</>
+		</CartProvider>
 	);
 }
 

@@ -96,6 +96,13 @@ export const CartItemInfo = styled('div', {
 	}
 });
 
+export const CartItemColor = styled('span', {
+	width: '1.5rem',
+	height: '1.5rem',
+	borderRadius: '50%',
+	display: 'inline-block'
+});
+
 export const CartItemText = styled('p', {
 	fontSize: '$16',
 

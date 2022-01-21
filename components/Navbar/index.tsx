@@ -24,12 +24,17 @@ import ContentLayout from '../Layout/ContentLayout';
 /* Data */
 import { NAV_ITEMS } from './data';
 
+/* Consumers */
+import { useCart } from '../../context/CartContext';
+
 /* Assets */
 import moiteilLogo from '../../public/moiteil-logo.png';
 import cartIcon from '../../public/cart-icon.svg';
 
 function Navbar() {
 	const router = useRouter();
+
+	const { totalCartItems } = useCart();
 
 	const [activeUrl, setActiveUrl] = useState(router.asPath);
 	const [isMobileNavActive, setIsMobileNavActive] = useState(false);
@@ -71,7 +76,7 @@ function Navbar() {
 						<ButtonWrapper>
 							<InternalLink href="/cart" style={cartButtonLink}>
 								<Image src={cartIcon} />
-								<CartItemsCount>24</CartItemsCount>
+								<CartItemsCount>{totalCartItems}</CartItemsCount>
 							</InternalLink>
 							<BurgerBtn onClick={handleToggleMobileNav}>
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
