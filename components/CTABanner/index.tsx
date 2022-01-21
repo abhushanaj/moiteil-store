@@ -15,7 +15,7 @@ import InternalLink from '../InternalLink';
 import GraphCMSImage from '../GraphCMSImage';
 
 /* Types */
-import type { CtaContent } from '../../types/Banner';
+import type { CtaContent } from '../../types/banner';
 
 type Props = {
 	ctaBannerContent: CtaContent;

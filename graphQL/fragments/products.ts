@@ -5,6 +5,7 @@ export const PRODUCT_DETAILS_FRAGMENT = gql`
 		id
 		name
 		slug
+		startingPrice
 	}
 `;
 

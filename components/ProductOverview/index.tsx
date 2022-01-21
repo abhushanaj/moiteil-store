@@ -12,10 +12,11 @@ type Props = {
 	name: string;
 	slug: string;
 	thumbnail: Image;
+	startingPrice: number;
 };
 
 function ProductOverview(props: Props) {
-	const { name, slug, thumbnail } = props;
+	const { name, slug, thumbnail, startingPrice } = props;
 	return (
 		<ProductCardWrapper>
 			<ProductImage>
@@ -25,7 +26,7 @@ function ProductOverview(props: Props) {
 			<ProductContent>
 				<h2>{name}</h2>
 				<p>
-					<strong>$ 18.00</strong>
+					Starting from <strong>$ {startingPrice}</strong>
 				</p>
 
 				<InternalLink href={`/product/${slug}`} style={viewProductStyles}>

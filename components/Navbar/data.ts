@@ -24,6 +24,10 @@ export const NAV_ITEMS = [
 		label: 'Wall Art'
 	},
 	{
+		href: '/category/hats',
+		label: 'Hats'
+	},
+	{
 		href: '/category/eco-friendly',
 		label: 'Eco Friendly'
 	},

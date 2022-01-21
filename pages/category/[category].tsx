@@ -86,6 +86,7 @@ const CategoryPage: NextPage<Props> = (props) => {
 									name={product.name}
 									thumbnail={product.thumbnail}
 									slug={product.slug}
+									startingPrice={product.startingPrice}
 								/>
 							</CategoryProductsGridItem>
 						);

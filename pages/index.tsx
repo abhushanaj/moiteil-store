@@ -45,7 +45,12 @@ const Home: NextPage<Props> = (props) => {
 					{popularProducts.map((product) => {
 						return (
 							<GridLayoutItem key={product.id}>
-								<ProductOverview name={product.name} thumbnail={product.thumbnail} slug={product.slug} />
+								<ProductOverview
+									name={product.name}
+									thumbnail={product.thumbnail}
+									slug={product.slug}
+									startingPrice={product.startingPrice}
+								/>
 							</GridLayoutItem>
 						);
 					})}
@@ -91,7 +96,12 @@ const Home: NextPage<Props> = (props) => {
 					{latestProducts.map((product) => {
 						return (
 							<GridLayoutItem key={product.id}>
-								<ProductOverview name={product.name} thumbnail={product.thumbnail} slug={product.slug} />
+								<ProductOverview
+									name={product.name}
+									thumbnail={product.thumbnail}
+									slug={product.slug}
+									startingPrice={product.startingPrice}
+								/>
 							</GridLayoutItem>
 						);
 					})}

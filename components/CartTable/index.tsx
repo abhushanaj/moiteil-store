@@ -68,7 +68,7 @@ function CartTable() {
 
 										<CartItemText>{`$${cartItem.price} (x${cartItem.quantity})`} </CartItemText>
 
-										<CartItemText>{formatSizeChoice(cartItem.size)}</CartItemText>
+										<CartItemText>{formatSizeChoice(cartItem.size || '')}</CartItemText>
 
 										<CartItemText>
 											<CartItemColor css={{ bgColor: `${cartItem.color.hex}` }} title={cartItem.color.hex} />

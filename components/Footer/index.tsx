@@ -73,7 +73,11 @@ const Footer = () => {
 							</FooterLinkItem>
 
 							<FooterLinkItem>
-								<InternalLink href="/kids">Kids</InternalLink>
+								<InternalLink href="/category/kids">Kids</InternalLink>
+							</FooterLinkItem>
+
+							<FooterLinkItem>
+								<InternalLink href="/category/hats">Hats</InternalLink>
 							</FooterLinkItem>
 						</FooterGridItemList>
 					</FooterGridItem>
