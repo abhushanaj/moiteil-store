@@ -60,7 +60,14 @@ Type: Boolean
 Constraints:  Required, Title
 ```
 
-8. Product Variants (Check [**Product Variants Modelling**](../PRODUCT_VARIANT_SCHEMA) for more info. )
+8. Product Variants
+
+```
+Name: ProductVariants
+Type: Product Variant (check PRODUCT_VARIANT_MODELLING) for more info
+Constraints:  Required, Multiple Values, One-way-reference
+
+```
 
 In terms of JSON response a product will look like the following:
 
@@ -77,7 +84,7 @@ In terms of JSON response a product will look like the following:
 		"isLatest": false,
 		"isPopular": true,
 		"productVariants": [
-			// list of product variants
+			// list of product variants belonging to this product
 		]
 	}
 }

@@ -1,0 +1,12 @@
+{
+	"categoriesLists": [
+		{
+			"name": "Clothing",
+			"categoryLink": "/category/clothing",
+			"categoryImage": {
+				"url": "..."
+			},
+			"products": []
+		}
+	]
+}

@@ -28,7 +28,7 @@ The application using GraphCMS as it's CMS service to manage all the content aro
 
 - Each Moiteil Product on the store is modelled to the following [**schema**](./PRODUCT_SCHEMA.md).
 - Every Moiteil Product can have different variations (products in store have been varied based on color choice) and is modelled to the follwing [**schema**](./PRODUCT_VARIANT_SCHEMA.md).
-- Every product can belong in one or more of product categories which is modelled using the following [**schema**](./CATEGORY_SCHEMA.md)
+- Every product can belong in one or more product categories which is modelled using the following [**schema**](./CATEGORY_SCHEMA.md)
 
 ## 🚀 About Me
 

@@ -53,7 +53,9 @@ In terms for JSON response it will look like the following
 			"color": {
 				"hex": "#fff"
 			},
-			"size": ["size1", "size2", "size3"],
+			"size": [
+				// possible list of values from sizeType Enumeration List
+			],
 			"previewImage": {
 				"url": "......"
 			},
