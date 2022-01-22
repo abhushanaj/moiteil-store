@@ -36,7 +36,7 @@ const CategoryPage: NextPage<Props> = (props) => {
 	const { categoryWithProducts, allCategories } = props;
 
 	return (
-		<AppLayout>
+		<AppLayout title="Find Item by Category" pageSlug={categoryWithProducts.categoryLink}>
 			<BannerTile>
 				<h1>{categoryWithProducts.name}</h1>
 			</BannerTile>

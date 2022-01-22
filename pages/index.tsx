@@ -34,7 +34,7 @@ const Home: NextPage<Props> = (props) => {
 	const { ctaBannerContent, categoriesLists, latestProducts, popularProducts } = props;
 
 	return (
-		<AppLayout>
+		<AppLayout title="Home" pageSlug="/">
 			{/* CTA Marketing Banner */}
 			<CTABanner ctaBannerContent={ctaBannerContent} />
 

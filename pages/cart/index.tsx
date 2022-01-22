@@ -12,7 +12,7 @@ import CartTable from '../../components/CartTable';
 
 const CartPage: NextPage = () => {
 	return (
-		<AppLayout>
+		<AppLayout title="Your Cart" pageSlug="/cart">
 			<BannerTile>
 				<h1>Your Cart</h1>
 			</BannerTile>
