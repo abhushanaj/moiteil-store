@@ -1,8 +1,8 @@
-# Modelling the Store Product Variants
+# 💪 Modelling the Store Product Variants
 
 A Moiteil Product Variant is described by the following structure:
 
-1. Variant Price (Price of a particular variant)
+**1. Variant Price (Price of a particular variant)**
 
 ```
 Name: Price
@@ -10,7 +10,7 @@ Type: Float
 Constraints:  Required
 ```
 
-2. Variant Color (Color of a particular variant)
+**2. Variant Color (Color of a particular variant)**
 
 ```
 Name: Color
@@ -18,7 +18,7 @@ Type: Color
 Constraints:  Required
 ```
 
-3. Variant Sizes (Size Choices of a particular variant on the particular color)
+**3. Variant Sizes (Size Choices of a particular variant on the particular color)**
 
 ```
 Name: Size
@@ -26,7 +26,7 @@ Type: SizeType (Select any option from the choices for size emumeration - check 
 Constraints:  Required, Multiple Values
 ```
 
-4. Variant Preview Image
+**4. Variant Preview Image**
 
 ```
 Name: Preview Image
@@ -34,7 +34,7 @@ Type: Asset
 Constraints: Required
 ```
 
-5. Variant Catelog Images
+**5. Variant Catelog Images**
 
 ```
 Name: CatelogImages
@@ -44,7 +44,7 @@ Constraints: Required, Multiple Values
 
 In terms for JSON response it will look like the following
 
-```json
+```js
 {
 	"productVariants": [
 		// first variant

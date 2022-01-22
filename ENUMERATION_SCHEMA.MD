@@ -1,6 +1,6 @@
 # Modelling the Product Variant Size Type
 
-A Moiteil Product can belong to one or more categories described by the following structure:
+A Moiteil Product can have a list of possible sizes by the following structure:
 
 ```
 Name: SizeType
@@ -17,5 +17,4 @@ export function formatSizeChoice(sizeChoice: string) {
 formatSizeChoice('XL_2'); //2XL
 formatSizeChoice('oz_15'); //15oz
 //... so on
-
 ```
