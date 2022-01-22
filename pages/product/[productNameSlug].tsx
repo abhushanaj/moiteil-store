@@ -116,7 +116,7 @@ const ProductPage: NextPage<Props> = (props) => {
 	}, [addItemToCart, selectedVariant, selectedSize, product.name]);
 
 	return (
-		<AppLayout>
+		<AppLayout title={product.name} pageSlug={`/product/${product.slug}`}>
 			<ContentLayout>
 				<Breadcrumb
 					style={{ my: '3rem' }}

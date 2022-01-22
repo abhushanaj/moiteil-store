@@ -99,11 +99,11 @@ const Footer = () => {
 							</FooterLinkItem>
 
 							<FooterLinkItem>
-								<ExternalLink href={process.env.NEXT_PUBLIC_RADIX_UI_LINK}>Radix UI</ExternalLink>
+								<ExternalLink href={process.env.NEXT_PUBLIC_STRIPE_LINK}>Stripe</ExternalLink>
 							</FooterLinkItem>
 
 							<FooterLinkItem>
-								<ExternalLink href={process.env.NEXT_PUBLIC_STRIPE_LINK}>Stripe</ExternalLink>
+								<ExternalLink href={process.env.NEXT_PUBLIC_PRINTFUL}>Printful</ExternalLink>
 							</FooterLinkItem>
 						</FooterGridItemList>
 					</FooterGridItem>
