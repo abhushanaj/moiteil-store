@@ -1,4 +1,4 @@
-# Modelling the Product Category Schema
+# Modelling the Product Category
 
 A Moiteil Product can belong to one or more categories described by the following structure:
 

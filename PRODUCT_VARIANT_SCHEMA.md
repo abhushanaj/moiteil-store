@@ -22,7 +22,7 @@ Constraints:  Required
 
 ```
 Name: Size
-Type: SizeTypes (Select any option from the choices for size emumeration)
+Type: SizeType (Select any option from the choices for size emumeration - check ENUMERATION_SCHEMA for more details)
 Constraints:  Required, Multiple Values
 ```
 
