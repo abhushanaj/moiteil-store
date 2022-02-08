@@ -12,9 +12,10 @@ import Navbar from '../components/Navbar';
 import { CartProvider } from '../context/CartContext';
 
 function MyApp({ Component: AppComponent, pageProps }: AppProps) {
+	globalStyles();
+
 	return (
 		<CartProvider>
-			{globalStyles()}
 			<Navbar />
 			<AppComponent {...pageProps} />
 			<Footer />
